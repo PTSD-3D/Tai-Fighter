@@ -4,6 +4,7 @@ set gameName=TaiFighter
 
 :start
 echo.
+echo WARNING: You MUST be using x64 Native Tools Command Prompt for VS2019 to be able to use this batch file
 set /P remOrLocal="Do you want to make a local build (L) or do you have the engine files elsewhere? (R) "
 IF '%remOrLocal%'=='L' GOTO localBuild
 IF '%remOrLocal%'=='l' GOTO localBuild

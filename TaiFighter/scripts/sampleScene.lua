@@ -1,5 +1,4 @@
 local prefabs = reqPrefab 
-local sceneConfig = reqSceneConfigurations 
 local Scene={
  Entities={	End=
         {
@@ -22,6 +21,6 @@ local Scene={
 		Transform = {position={x=-20.0,y=-8.0,z=300.0},rotation={x=-90.00000250447816,y=180.00000500895632,z=0.0},scale={x=3.0,y=3.0,z=3.0}}}),
 	Enemy_006=prefabs.Enemy({
 		Transform = {position={x=20.0,y=-8.0,z=300.0},rotation={x=-90.00000250447816,y=180.00000500895632,z=0.0},scale={x=3.0,y=3.0,z=3.0}}})},
-		SceneConfig=sceneConfig.sampleScene({})
+		SceneConfig=prefabs.sampleScene({})
 }
 return Scene

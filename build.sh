@@ -33,7 +33,6 @@ printmsg() {
 move_assets() {
 	cp "-r" "./TaiFighter/assets/." "./bin/assets/"
 	cp "-r" "./TaiFighter/scripts/." "./bin/assets/scripts/Client"
-	cp "-r" "./TaiFighter/prefabs/." "./bin/assets/scripts/Client/Prefabs"
 }
 
 #Gets the path to the engine by param, builds it and moves assets and scritps to its corresponding places

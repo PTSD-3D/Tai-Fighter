@@ -1,2 +1,18 @@
-[Bb]in/
-build_config.txt
+# Ignore everything
+*
+# But descend into directories
+!*/
+# Recursively allow files under subtree
+!/TaiFighter/assets/**
+/TaiFighter/assets/scripts/Engine/
+
+!/.vscode/**
+
+!/PTSD-Engine/**
+
+!workspace.code-workspace
+!.gitignore
+!.gitmodules
+!*.bat
+!*.sh
+!README.md

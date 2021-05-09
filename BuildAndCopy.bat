@@ -50,11 +50,7 @@ GOTO copyFiles
 
 :copyFiles
 echo Copying engine files...
-robocopy %remFolder% bin\ /s /e /NFL /NDL /NJH /NJS /nc /ns /np
-
-echo Copying game files...
-robocopy %gameName%\assets bin\assets /s /e /NFL /NDL /NJH /NJS /nc /ns /np
-robocopy %gameName%\scripts bin\assets\scripts\Client /s /e /NFL /NDL /NJH /NJS /np
+robocopy %remFolder% %gameName%\ /s /e /NFL /NDL /NJH /NJS /nc /ns /np /XC /XO /XN
 
 echo.
 echo All done!

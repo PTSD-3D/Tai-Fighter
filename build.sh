@@ -31,9 +31,9 @@ printmsg() {
 
 #Moves assets to corresponding folders in bin
 move_assets() {
-	# mkdir "./TaiFighter/assets/scripts/Engine"
+	rm -rf ./bin/assets/scripts/Client # We don't want Client example scripts from Engine
 	cp -rT "./bin" "./TaiFighter"
-	cp "-r" "./bin/assets/scripts/Engine" "./TaiFighter/assets/scripts/Engine"
+	cp "-rT" "./bin/assets/scripts/Engine" "./TaiFighter/assets/scripts/Engine"
 	rm -r ./bin
 }
 

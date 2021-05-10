@@ -7,7 +7,8 @@ local Scene={
             Components= {
             }
         }
-        ,
+        ,	
+	Camera = prefabs.MainCamera({position={x=-20.0,y=-8.0,z=-300.0},rotation={x=-90.0,y=720.0,z=-0.0},scale={x=3.0,y=3.0,z=3.0}}),
 	Enemy_000=prefabs.Enemy({
 		Transform = {position={x=-20.0,y=-8.0,z=-300.0},rotation={x=-90.0,y=720.0,z=-0.0},scale={x=3.0,y=3.0,z=3.0}}}),
 	Enemy_001=prefabs.Enemy({

@@ -9,6 +9,7 @@ ns.Component.create("playerMove",{"x","y","z"})
 ns.Component.create("boombox",{"volume","isPlaying","sound","channel"})
 ns.Component.create("topo")
 ns.Component.create("bullet",{"damage","speed","lifetime"},{damage=0,speed=3,lifetime=100})
+ns.Component.create("MainCamera")
 --lifetime is in frames
 
 LOG("Components load completed", LogLevel.Info, 1)

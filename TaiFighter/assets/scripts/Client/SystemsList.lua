@@ -5,6 +5,34 @@ LOG("Loading systems...", LogLevel.Info, 1)
 
 --Define new systems here
 
+ns.Perspective = {
+	D2 = 0,
+	D3 = 1
+}
+
+local CameraRotationSystem = ns.class("CameraRotationSystem", ns.System)
+--camera initial position = 0, 0, 8
+--looking at 0, 0, -1
+function CameraRotationSystem:requires() return {"MainCamera"} end
+
+function CameraRotationSystem:initialize()
+	ns.System.initialize(self)
+	self.orientation = ns.Perspective.D2
+	self.rotating = false
+	self.rotSpeed = 1
+	self.rotAngle = 90
+	
+	print("im working!\n\n\n")
+end
+
+function CameraRotationSystem:update(dt)
+	for _, entity in pairs(self.targets) do
+		print("toy chiquito")
+	end
+end
+
+Manager:addSystem(CameraRotationSystem())
+
 local MoveSystem = ns.class("MoveSystem",ns.System)
 
 --data

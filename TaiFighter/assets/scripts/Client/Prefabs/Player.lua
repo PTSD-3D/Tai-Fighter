@@ -1,14 +1,15 @@
 local pf = reqPrefab
 
 -- Params holds required parameters to build an instance of this prefab. This will be populated with transform information from Blender via our script in /tools
-function pf.Bullet(params)
+function pf.Player(params)
 	return {
 		Components = {
 			-- Example user defined components
-			{ name = "bullet", arguments = {1,3,10} }
+			{ name = "playerMove", arguments = { 1, 1, 1 }}, 
+			{ name = "boombox", arguments={0.5,false,Resources.Sounds.PTSD_Anthem,-1}},
+			-- { name = "playerMove", arguments = { { x = 1, y = 0, z = 0 } } }
 		},
 		Transform = params.Transform,
-		Mesh = { mesh = "Kirby.mesh", material = "body" },
-		Rigidbody = {size=params.Transform.scale,mass=1,position=params.Transform.position,type=2,trigger=true,rotation=params.Transform.rotation}
+		Mesh = { mesh = "Nave.mesh", material = "body" }
 	}
 end

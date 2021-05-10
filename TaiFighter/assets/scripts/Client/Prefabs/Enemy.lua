@@ -5,11 +5,11 @@ function pf.Enemy(params)
 	return {
 		Components = {
 			-- Example user defined components
-			{ name = "playerMove", arguments = { 1, 1, 1 }}, 
-			{ name = "boombox", arguments={0.5,false,Resources.Sounds.PTSD_Anthem,-1}},
-			-- { name = "playerMove", arguments = { { x = 1, y = 0, z = 0 } } }
+			{ name = "enemyMove", arguments = {0.5}},
+			{ name = "enemyCollision", arguments={}}
 		},
 		Transform = params.Transform,
-		Mesh = { mesh = "Nave.mesh", material = "body" }
+		Mesh = { mesh = "Nave.mesh", material = "KirbyMat" },
+		Rigidbody = {size=params.Transform.scale,mass=1,position=params.Transform.position,type=2,trigger=false,rotation=params.Transform.rotation}
 	}
 end

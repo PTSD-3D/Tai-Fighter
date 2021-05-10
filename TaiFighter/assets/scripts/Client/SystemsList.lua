@@ -190,12 +190,46 @@ function BulletSystem:update(dt)
 		bulletInfo.lifetime = bulletInfo.lifetime - 1
 		if(bulletInfo.lifetime <= 0) then
 			--delete entity
-			Manager:removeEntity(entity)
+			-- Manager:removeEntity(entity)
 		end
 	end
 end
 
 Manager:addSystem(BulletSystem())
+
+-----------------------------------------------------------
+
+local EnemyMovementSystem = ns.class("EnemyMovementSystem",ns.System)
+
+function EnemyMovementSystem:requires() return {"enemyMove"} end
+
+function EnemyMovementSystem:update(dt)
+	for _, entity in pairs(self.targets) do
+		local enemySpeed = entity:get("enemyMove").speed
+		local movement = vec3:new(-enemySpeed*dt,0,0)
+		entity.Transform:translate(movement)
+	end
+end
+
+Manager:addSystem(EnemyMovementSystem())
+
+-----------------------------------------------------------
+local EnemyCollisionSystem = ns.class("EnemyCollisionSystem",ns.System)
+
+function EnemyCollisionSystem:requires() return {"enemyCollision"} end
+
+function EnemyCollisionSystem:onCollision(enemy, other, collision)
+	if(other:has("playerMove")) then
+		LOG("Player DEAD")
+	else
+		enemy.Mesh:setMaterial("Red")
+	end
+end
+
+function EnemyCollisionSystem:update(dt)
+end
+
+Manager:addSystem(EnemyCollisionSystem())
 
 -----------------------------------------------------------
 LOG("Systems load completed", LogLevel.Info, 1)

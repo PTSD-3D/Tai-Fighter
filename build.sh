@@ -31,8 +31,10 @@ printmsg() {
 
 #Moves assets to corresponding folders in bin
 move_assets() {
-	cp "-r" "./TaiFighter/assets/." "./bin/assets/"
-	cp "-r" "./TaiFighter/scripts/." "./bin/assets/scripts/Client"
+	rm -rf ./bin/assets/scripts/Client # We don't want Client example scripts from Engine
+	cp -rT "./bin" "./TaiFighter"
+	cp "-rT" "./bin/assets/scripts/Engine" "./TaiFighter/assets/scripts/Engine"
+	rm -r ./bin
 }
 
 #Gets the path to the engine by param, builds it and moves assets and scritps to its corresponding places
@@ -83,7 +85,7 @@ build $path_to_engine
 
 #If execute flag is set, execute the game after build
 if [[ ! -z $xflag ]]; then
-	cd bin
+	cd TaiFighter
 	./PTSD_Core
 fi
 exit 0

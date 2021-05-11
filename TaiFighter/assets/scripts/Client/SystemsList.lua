@@ -10,6 +10,13 @@ ns.Perspective = {
 	D3 = 1
 }
 
+ns.changePerspectiveEvent = ns.class("changePerspectiveEvent")
+
+function ns.changePerspectiveEvent:initialize(orientation)
+	self.orientation = orientation
+	LOG("Firing ChangedPerspectiveEvent")
+end
+
 local CameraRotationSystem = ns.class("CameraRotationSystem", ns.System)
 --camera initial position = 0, 0, 8
 --looking at 0, 0, -1
@@ -21,14 +28,18 @@ function CameraRotationSystem:initialize()
 	self.rotating = false
 	self.rotSpeed = 1
 	self.rotAngle = 90
-	
-	print("im working!\n\n\n")
+
+	Manager.eventManager:addListener("changePerspectiveEvent", self, self.changePerspective)
 end
 
 function CameraRotationSystem:update(dt)
 	for _, entity in pairs(self.targets) do
-		print("toy chiquito")
+		--print("toy chiquito")
 	end
+end
+
+function CameraRotationSystem:changePerspective(event)
+	print(event.orientation)
 end
 
 Manager:addSystem(CameraRotationSystem())
@@ -74,6 +85,7 @@ end
 
 function MoveSystem:Change()
 	self.sideview = not self.sideview
+	Manager.eventManager:fireEvent(ns.changePerspectiveEvent(self.sideview))
 	LOG("Changing view")
 end
 

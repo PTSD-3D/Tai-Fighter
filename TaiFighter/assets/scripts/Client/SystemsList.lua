@@ -86,30 +86,22 @@ MoveSystem.dirs = {
 	backward = vec3:new(-1, 0, 0)
 }
 
-function MoveSystem:requires()
-	return {"playerMove"}
-end
+function MoveSystem:requires() return { "playerMove" } end
 
-function MoveSystem:Move(entity, dir, delta, speed)
+function MoveSystem:Move(entity,dir, delta, speed)
 	entity.Transform:translate(dir * delta * speed:magnitude())
 end
 
 function MoveSystem:Shoot(entity, delta)
 	LOG("PEW")
 	local chan = playSound(Resources.Sounds.Oof.id)
-	setChannelVolume(chan, 1)
-	ns.spawnEntity(
-		Manager,
-		prefabs.Bullet(
-			{
-				Transform = {
-					position = {x = entity.Transform.position.x, y = entity.Transform.position.y, z = entity.Transform.position.z},
-					rotation = {x = 0.0, y = 0.0, z = 0.0},
-					scale = {x = 1, y = 1, z = 1}
-				}
-			}
-		)
-	)
+	setChannelVolume(chan,1)
+	ns.spawnEntity(Manager,prefabs.Bullet({
+		Transform = {
+			position={x=entity.Transform.position.x,y=entity.Transform.position.y,z=entity.Transform.position.z},
+			rotation={x=0.0,y=0.0,z=0.0},
+			scale={x=1,y= 1,z=1}}}
+	))
 end
 
 function MoveSystem:Action()
@@ -123,38 +115,26 @@ function MoveSystem:Change()
 end
 
 --Read the input from a keyboard/mouse and sends a commad
-function MoveSystem:KeyboardHandleInput(entity, dt, speed)
+function MoveSystem:KeyboardHandleInput(entity,dt,speed)
 	--Movement
 	local direction = vec3:new(0, 0, 0)
 	-- Up and down
-	if keyPressed(PTSDKeys.W) then
-		direction = direction + self.dirs.up
-	end
-	if keyPressed(PTSDKeys.S) then
-		direction = direction + self.dirs.down
-	end
+	if keyPressed(PTSDKeys.W) then direction = direction + self.dirs.up end
+	if keyPressed(PTSDKeys.S) then direction = direction + self.dirs.down end
 	-- 2D control
-	if keyPressed(PTSDKeys.A) and self.sideview then
-		direction = direction + self.dirs.backward
-	end
-	if keyPressed(PTSDKeys.D) and self.sideview then
-		direction = direction + self.dirs.forward
-	end
+	if keyPressed(PTSDKeys.A) and self.sideview then direction = direction + self.dirs.backward end
+	if keyPressed(PTSDKeys.D) and self.sideview then direction = direction + self.dirs.forward end
 	-- 3D control
-	if keyPressed(PTSDKeys.A) and not self.sideview then
-		direction = direction + self.dirs.left
-	end
-	if keyPressed(PTSDKeys.D) and not self.sideview then
-		direction = direction + self.dirs.right
-	end
+	if keyPressed(PTSDKeys.A) and not self.sideview then direction = direction + self.dirs.left end
+	if keyPressed(PTSDKeys.D) and not self.sideview then direction = direction + self.dirs.right end
 
-	self:Move(entity, direction, dt, speed)
+	self:Move(entity, direction,dt,speed)
 
 	-- Actions (shoot, change, something)
 	if keyJustPressed(PTSDKeys.J) or mouseButtonJustPressed(PTSDMouseButton.Right) then
 		self:Action()
 	end
-	if keyJustPressed(PTSDKeys.H) or mouseButtonJustPressed(PTSDMouseButton.Left) then
+	if keyJustPressed(PTSDKeys.H) or  mouseButtonJustPressed(PTSDMouseButton.Left) then
 		self:Shoot(entity, dt)
 	end
 	if keyJustPressed(PTSDKeys.Space) then
@@ -163,32 +143,21 @@ function MoveSystem:KeyboardHandleInput(entity, dt, speed)
 end
 
 --Read the input from a gamepad and sends a commad
-function MoveSystem:ControllerHandleInput(entity, dt, speed)
+function MoveSystem:ControllerHandleInput(entity,dt,speed)
 	local axis = controllerLeftAxis(0)
 	local direction = vec3:new(0, 0, 0)
 	-- Up and down
-	if axis.y < -self.deadzone then
-		direction = direction + self.dirs.up
-	end
-	if axis.y > self.deadzone then
-		direction = direction + self.dirs.down
-	end
+	if axis.y < -self.deadzone then direction = direction + self.dirs.up end
+	if axis.y > self.deadzone then direction = direction + self.dirs.down end
 	-- 2D control
-	if axis.x > self.deadzone and self.sideview then
-		direction = direction + self.dirs.forward
-	end
-	if axis.x < -self.deadzone and self.sideview then
-		direction = direction + self.dirs.backward
-	end
+	if axis.x > self.deadzone and self.sideview then direction = direction + self.dirs.forward end
+	if axis.x < -self.deadzone and self.sideview then direction = direction + self.dirs.backward end
 	-- 3D control
-	if axis.x > self.deadzone and not self.sideview then
-		direction = direction + self.dirs.right
-	end
-	if axis.x < -self.deadzone and not self.sideview then
-		direction = direction + self.dirs.left
-	end
-	self:Move(entity, direction, dt, speed)
+	if axis.x > self.deadzone and not self.sideview then direction = direction + self.dirs.right end
+	if axis.x < -self.deadzone and not self.sideview then direction = direction + self.dirs.left end
+	self:Move(entity, direction,dt,speed)
 
+	
 	-- Actions (shoot, change, something)
 	if controllerButtonJustPressed(0, PTSDControllerButtons.B) or controllerRightTrigger(0) > self.deadzone then
 		self:Action()
@@ -199,22 +168,18 @@ function MoveSystem:ControllerHandleInput(entity, dt, speed)
 	if controllerButtonJustPressed(0, PTSDControllerButtons.Y) then
 		self:Change()
 	end
+	
 end
 
 function MoveSystem:update(dt)
-	local var = 0
 	for _, entity in pairs(self.targets) do
-		if (var == 0) then
-			--print(var)
-			local playerMoveCom = entity:get("playerMove")
-			local vx = playerMoveCom.x
-			local vy = playerMoveCom.y
-			local vz = playerMoveCom.z
-			local speed = vec3:new(vx, vy, vz)
-			self:KeyboardHandleInput(entity, dt, speed)
-			self:ControllerHandleInput(entity, dt, speed)
-			var = var + 1
-		end
+		local playerMoveCom = entity:get("playerMove")
+		local vx = playerMoveCom.x
+		local vy = playerMoveCom.y
+		local vz = playerMoveCom.z
+		local speed = vec3:new(vx, vy, vz)
+		self:KeyboardHandleInput(entity,dt,speed)
+		self:ControllerHandleInput(entity,dt,speed)
 	end
 end
 
@@ -222,14 +187,14 @@ Manager:addSystem(MoveSystem())
 
 -----------------------------------------------------------
 
-local SoundSystem = ns.class("SoundSystem", ns.System)
+local SoundSystem = ns.class("SoundSystem",ns.System)
 
 function SoundSystem:requires()
 	return {"boombox"}
 end
 
 function SoundSystem:onPlay(music)
-	if music.channel == -1 then
+	if music.channel == -1 then 
 		--we play for the first time
 		music.channel = playSound(music.sound.id)
 	else
@@ -242,7 +207,7 @@ function SoundSystem:onStop(music)
 end
 
 function SoundSystem:setVolume(music)
-	setChannelVolume(music.channel, music.volume)
+	setChannelVolume(music.channel,music.volume)
 end
 
 function SoundSystem:update(dt)
@@ -258,7 +223,7 @@ function SoundSystem:update(dt)
 				self:onStop(music)
 			else
 				music.isPlaying = true
-				self:onPlay(music)
+				self:onPlay(music)				
 			end
 		end
 		if music.channel == -1 then
@@ -277,19 +242,17 @@ end
 Manager:addSystem(SoundSystem())
 -----------------------------------------------------------
 
-local BulletSystem = ns.class("BulletSystem", ns.System)
+local BulletSystem = ns.class("BulletSystem",ns.System)
 
-function BulletSystem:requires()
-	return {"bullet"}
-end
+function BulletSystem:requires() return {"bullet"} end
 
 function BulletSystem:update(dt)
 	for _, entity in pairs(self.targets) do
 		local bulletInfo = entity:get("bullet")
-		local movement = vec3:new(bulletInfo.speed * dt, 0, 0)
+		local movement = vec3:new(bulletInfo.speed*dt,0,0)
 		entity.Transform:translate(movement)
 		bulletInfo.lifetime = bulletInfo.lifetime - 1
-		if (bulletInfo.lifetime <= 0) then
+		if(bulletInfo.lifetime <= 0) then
 			--delete entity
 			Manager:removeEntity(entity)
 		end

@@ -190,7 +190,7 @@ function BulletSystem:update(dt)
 		bulletInfo.lifetime = bulletInfo.lifetime - 1
 		if(bulletInfo.lifetime <= 0) then
 			--delete entity
-			-- Manager:removeEntity(entity)
+			Manager:removeEntity(entity)
 		end
 	end
 end

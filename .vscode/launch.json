@@ -26,6 +26,7 @@
 					"environment": [],
 					"externalConsole": false,
 					"MIMode": "gdb",
+					"preLaunchTask": "build-Linux",
 					"setupCommands": [
 							{
 									"description": "Enable pretty-printing for gdb",

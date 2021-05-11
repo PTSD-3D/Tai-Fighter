@@ -10,11 +10,7 @@ local Scene = {
 			},
 			Components = {}
 		},
-		Camera = prefabs.MainCamera(
-			{
-
-			}
-		),
+		Camera = prefabs.MainCamera(),
 		Enemy_000 = prefabs.Enemy(
 			{
 				Transform = {

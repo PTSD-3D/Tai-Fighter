@@ -9,6 +9,6 @@ ns.Component.create("playerMove",{"x","y","z"})
 ns.Component.create("boombox",{"volume","isPlaying","sound","channel"})
 ns.Component.create("topo")
 ns.Component.create("bullet",{"damage","speed","lifetime"},{damage=0,speed=3,lifetime=100}) --lifetime is in frames
-ns.Component.create("mainCamera", {"rotationCenter","radius","rotationSpeed"},{rotationCenter={x = -20.0, y = -8.0, z = -300.0}, radius=10, rotationSpeed=1})
+ns.Component.create("MainCamera", {"rotationCenter","radius","rotationSpeed"},{rotationCenter={x = 0.0, y = 0.0, z = -100.0}, radius=100, rotationSpeed=1})
 
 LOG("Components load completed", LogLevel.Info, 1)

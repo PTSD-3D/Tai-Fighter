@@ -13,6 +13,5 @@ function pf.MainCamera(params)
 			rotation = {x = -90.0, y = 720.0, z = -0.0},
 			scale = {x = 1.5, y = 1.5, z = 1.5}
 		},
-		Mesh = { }
 	}
 end

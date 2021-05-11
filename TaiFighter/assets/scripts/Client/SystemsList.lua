@@ -29,21 +29,22 @@ function CameraRotationSystem:onAddEntity(entity)
 	print("Me inicializo\n\n\n")
 	print(self.targets)
 	print("HOLA ME INICIALIZO\n\n\n\n\n")
-	self.cameraComp = entity:get("mainCamera")
+	self.cameraComp = entity:get("MainCamera")
 	print(self.cameraComp)
-	self.sideview = false
+	self.sideview = true
 	self.rotating = false
 	self.rotAngle = 90
 	self.rotationCenter = vec3:new(self.cameraComp.rotationCenter.x, self.cameraComp.rotationCenter.y, self.cameraComp.rotationCenter.z)
-	self.sideViewPos = self.rotationCenter + vec3:new(self.cameraComp.radius, 0, 0)
-	self.frontalPos = self.rotationCenter - vec3:new(0, 0, self.cameraComp.radius)
-	cameraSetPos(self.frontalPos)
+	self.frontalPos = self.rotationCenter - vec3:new(self.cameraComp.radius, 0, 0)
+	self.sideViewPos = self.rotationCenter + vec3:new(0, 0, self.cameraComp.radius)
+	cameraSetPos(self.sideViewPos)
+	cameraLookAt(self.rotationCenter)
 	Manager.eventManager:addListener("changePerspectiveEvent", self, self.changePerspective)
 end
 
 function CameraRotationSystem:update(dt)
 	for _, entity in pairs(self.targets) do
-		print("blablabla")
+		--print("blablabla")
 		--printCameraPos()
 	end
 end
@@ -52,10 +53,11 @@ function CameraRotationSystem:changePerspective(event)
 	--print(self.destPos.x .. " " .. self.destPos.y .. " " ..self.destPos.z)
 	print(event.sideview)
 	if (event.sideview == true) then
-		cameraSetPos(self.destPos)
+		cameraSetPos(self.sideViewPos)
 	else
-		cameraSetPos(self.iniPos)
+		cameraSetPos(self.frontalPos)
 	end
+	cameraLookAt(self.rotationCenter)
 	--printCameraPos()
 end
 
@@ -64,7 +66,7 @@ Manager:addSystem(CameraRotationSystem())
 local MoveSystem = ns.class("MoveSystem", ns.System)
 
 --data
-MoveSystem.sideview = false
+MoveSystem.sideview = true
 MoveSystem.deadzone = 0.1
 MoveSystem.dirs = {
 	-- 2d3d

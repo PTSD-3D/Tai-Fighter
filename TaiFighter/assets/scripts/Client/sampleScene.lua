@@ -18,9 +18,9 @@ local Scene = {
 		Enemy_000 = prefabs.Enemy(
 			{
 				Transform = {
-					position = {x = -20.0, y = -8.0, z = -300.0},
-					rotation = {x = -90.0, y = 720.0, z = -0.0},
-					scale = {x = 3.0, y = 3.0, z = 3.0}
+					position = {x = 0.0, y = 0.0, z = -100},
+					rotation = {x = -90.0, y = 90.0, z = -0.0},
+					scale = {x = 1.0, y = 4.6, z = 1}
 				}
 			}
 		)

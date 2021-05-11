@@ -32,8 +32,8 @@ printmsg() {
 #Moves assets to corresponding folders in bin
 move_assets() {
 	# mkdir "./TaiFighter/assets/scripts/Engine"
-	cp -rT "./bin" "./TaiFighter"
-	cp "-r" "./bin/assets/scripts/Engine" "./TaiFighter/assets/scripts/Engine"
+	cp -riT "./bin" "./TaiFighter"
+	cp "-riT" "./bin/assets/scripts/Engine" "./TaiFighter/assets/scripts/Engine"
 	rm -r ./bin
 }
 

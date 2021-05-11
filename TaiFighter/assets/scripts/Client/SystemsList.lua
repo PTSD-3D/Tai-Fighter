@@ -159,7 +159,7 @@ function SoundSystem:update(dt)
 				self:onStop(music)
 			else
 				music.isPlaying = true
-				self:onPlay(music)				
+				self:onPlay(music)
 			end
 		end
 		if music.channel == -1 then
@@ -223,7 +223,8 @@ function EnemyCollisionSystem:onCollision(enemy, other, collision)
 		LOG("Player DEAD")
 	else
 		enemy.Mesh:setMaterial("Red")
-	end
+		Manager:removeEntity(enemy)
+		end
 end
 
 function EnemyCollisionSystem:update(dt)

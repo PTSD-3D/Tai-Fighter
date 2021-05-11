@@ -31,10 +31,12 @@ printmsg() {
 
 #Moves assets to corresponding folders in bin
 move_assets() {
-	# mkdir "./TaiFighter/assets/scripts/Engine"
-	cp -riT "./bin" "./TaiFighter"
-	cp "-riT" "./bin/assets/scripts/Engine" "./TaiFighter/assets/scripts/Engine"
+	mkdir tmp
+	cp -f TaiFighter/assets/* tmp
+	rsync -avu --update --progress bin/ TaiFighter/ --exclude assets/scripts/Client
+	cp tmp/* TaiFighter/assets
 	rm -r ./bin
+	rm -r ./tmp
 }
 
 #Gets the path to the engine by param, builds it and moves assets and scritps to its corresponding places

@@ -1,5 +1,5 @@
-local ns = reqNamespace
-local prefabs = reqPrefab
+local ns = require("namespace")
+local prefabs = require("Prefab")
 
 LOG("Loading systems...", LogLevel.Info, 1)
 

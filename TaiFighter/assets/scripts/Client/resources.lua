@@ -1,5 +1,3 @@
-local prefabs = reqPrefab
-local sceneConfig = reqSceneConfigurations
 local SoundType = {
 	Sonido = 0,
 	Musica = 1

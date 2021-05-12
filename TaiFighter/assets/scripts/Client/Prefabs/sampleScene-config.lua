@@ -1,7 +1,7 @@
-local sceneConfig = reqPrefab
-local ns = reqNamespace
+local pf = require("Prefab")
+
 --TODO require
-function sceneConfig.sampleScene()
+function pf.sampleScene()
 	return {
 		PhysicsConfig = {
 			Gravity = 0

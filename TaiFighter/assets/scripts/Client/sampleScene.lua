@@ -1,5 +1,4 @@
-local prefabs = reqPrefab 
-local sceneConfig = reqPrefab 
+local prefabs = require("Prefab")
 local Scene={
  Entities={	camera=
         {
@@ -31,6 +30,6 @@ local Scene={
 		Transform = {position={x=150.64349365234375,y=0.0,z=-42.66233825683594},rotation={x=-90.00000250447816,y=630.0000926634281,z=-0.0},scale={x=3.0,y=3.0,z=3.0}}}),
 	Player=prefabs.Player({
 		Transform = {position={x=-0.0,y=0.0,z=-40.7860107421875},rotation={x=-90.00000250447816,y=90.00000250447816,z=0.0},scale={x=1.0,y=4.599999904632568,z=1.0}}})},
-		SceneConfig=sceneConfig.sampleScene({})
+		SceneConfig=prefabs.sampleScene({})
 }
 return Scene

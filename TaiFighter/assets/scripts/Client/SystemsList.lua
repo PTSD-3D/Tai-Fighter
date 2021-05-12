@@ -222,7 +222,7 @@ function EnemyCollisionSystem:onCollision(enemy, other, collision)
 	if(other:has("playerMove")) then
 		LOG("Player DEAD")
 	else
-		enemy.Mesh:setMaterial("Red")
+		LOG("Enemy DEAD")
 		Manager:removeEntity(enemy)
 		end
 end

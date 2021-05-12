@@ -33,7 +33,7 @@ printmsg() {
 move_assets() {
 	mkdir tmp
 	cp -f TaiFighter/assets/* tmp
-	rsync -avu --update --progress bin/ TaiFighter/ --exclude assets/scripts/Client
+	rsync -avu --update --progress bin/ TaiFighter/ --exclude assets/scripts/Client &> /dev/null
 	cp tmp/* TaiFighter/assets
 	rm -r ./bin
 	rm -r ./tmp

@@ -9,7 +9,7 @@ function pf.Enemy(params)
 			{ name = "enemyCollision", arguments={}}
 		},
 		Transform = params.Transform,
-		Mesh = { mesh = "Nave.mesh", material = "KirbyMat" },
+		Mesh = { mesh = "Enemy.mesh", material = "Enemy" },
 		Rigidbody = {size=params.Transform.scale,mass=1,position=params.Transform.position,type=2,trigger=false,rotation=params.Transform.rotation}
 	}
 end

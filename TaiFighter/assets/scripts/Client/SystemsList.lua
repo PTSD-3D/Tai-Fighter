@@ -224,7 +224,7 @@ function SoundSystem:update(dt)
 				self:onStop(music)
 			else
 				music.isPlaying = true
-				self:onPlay(music)				
+				self:onPlay(music)
 			end
 		end
 		if music.channel == -1 then
@@ -261,6 +261,41 @@ function BulletSystem:update(dt)
 end
 
 Manager:addSystem(BulletSystem())
+
+-----------------------------------------------------------
+
+local EnemyMovementSystem = ns.class("EnemyMovementSystem",ns.System)
+
+function EnemyMovementSystem:requires() return {"enemyMove"} end
+
+function EnemyMovementSystem:update(dt)
+	for _, entity in pairs(self.targets) do
+		local enemySpeed = entity:get("enemyMove").speed
+		local movement = vec3:new(-enemySpeed*dt,0,0)
+		entity.Transform:translate(movement)
+	end
+end
+
+Manager:addSystem(EnemyMovementSystem())
+
+-----------------------------------------------------------
+local EnemyCollisionSystem = ns.class("EnemyCollisionSystem",ns.System)
+
+function EnemyCollisionSystem:requires() return {"enemyCollision"} end
+
+function EnemyCollisionSystem:onCollision(enemy, other, collision)
+	if(other:has("playerMove")) then
+		LOG("Player DEAD")
+	else
+		LOG("Enemy DEAD")
+		Manager:removeEntity(enemy)
+		end
+end
+
+function EnemyCollisionSystem:update(dt)
+end
+
+Manager:addSystem(EnemyCollisionSystem())
 
 -----------------------------------------------------------
 LOG("Systems load completed", LogLevel.Info, 1)

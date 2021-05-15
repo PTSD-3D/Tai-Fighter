@@ -2,13 +2,14 @@ local SoundType = {
 	Sonido = 0,
 	Musica = 1
 }
+
 local SoundChannel = {
 	Ambiente = 0,
 	Dialogo = 1,
 	General = 2
 }
 
-Resources = {
+local Resources = {
 	PATHS = {
 		Sound = "./assets/sounds/"
 	},
@@ -21,6 +22,22 @@ Resources = {
 		},		
 		Clowning = {
 			path = "clowning-around.mp3", id, tipo=SoundType.Musica, volume = 0.3
+		}
+	},
+	UISchemes = {
+		TaharezLookScheme = {
+			path = "TaharezLook.scheme", type=UIFileType.Scheme
+		}
+	},
+	UILayouts = {	
+		TaiFighterLayout = {
+			path = "TaiFighter.layout", type=UIFileType.Layout
+		},
+		PauseLayout = {
+			path = "Pause.layout", type=UIFileType.Layout
+		},
+		TitleLayout = {
+			path = "Title.layout", type=UIFileType.Layout
 		}
 	},
 	Meshes = {

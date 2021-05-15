@@ -1,5 +1,5 @@
-local prefabs = reqPrefab
-local sceneConfig = reqSceneConfigurations
+local prefabs = require("Prefab")
+local sceneConfig = prefabs
 local Scene = {
 	Entities = {
 		End = {

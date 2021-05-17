@@ -1,11 +1,76 @@
-local ns = reqNamespace
-local prefabs = reqPrefab
+local ns = require("namespace")
+local prefabs = require("Prefab")
+local resources = require("resources")
 
 LOG("Loading systems...", LogLevel.Info, 1)
 
 --Define new systems here
 
-local MoveSystem = ns.class("MoveSystem",ns.System)
+ns.changePerspectiveEvent = ns.class("changePerspectiveEvent")
+
+function ns.changePerspectiveEvent:initialize(sideview)
+	self.sideview = sideview
+	LOG("Firing ChangedPerspectiveEvent")
+end
+
+local CameraRotationSystem = ns.class("CameraRotationSystem", ns.System)
+--camera initial position = 0, 0, 8
+--looking at 0, 0, -1
+function CameraRotationSystem:requires()
+	return {"MainCamera"}
+end
+
+function CameraRotationSystem:initialize()
+	ns.System.initialize(self)
+	self.sideview = true
+	self.rotating = false
+	self.rotAngle = 90
+	self.currentAngle = 90
+	Manager.eventManager:addListener("changePerspectiveEvent", self, self.changePerspective)
+end
+
+function CameraRotationSystem:onAddEntity(entity)
+	self.cameraComp = entity:get("MainCamera") --Getting its MainCamera component
+	self.rotationCenter = vec3:new(self.cameraComp.rotationCenter.x, self.cameraComp.rotationCenter.y, self.cameraComp.rotationCenter.z)
+	self.frontalPos = self.rotationCenter - vec3:new(self.cameraComp.radius, 0, 0)
+	self.sideViewPos = self.rotationCenter + vec3:new(0, 0, self.cameraComp.radius)
+	cameraSetPos(self.sideViewPos)
+	cameraLookAt(self.rotationCenter)
+end
+
+function CameraRotationSystem:update(dt)
+	if (self.rotating == true) then
+		local newPos	
+		if(self.sideview) then --If we're switching from 3D to 2D	
+			self.currentAngle = self.currentAngle - self.cameraComp.rotationSpeed
+		else --If we're switching from 2D to 3D	
+			self.currentAngle = self.currentAngle + self.cameraComp.rotationSpeed
+		end
+		if(self.currentAngle >= 180) then --Clamping of the angle in case the speed is not multiple of 180/90
+			self.currentAngle = 180
+			self.rotating = false
+			LOG("Finished Camera rotation")
+		elseif(self.currentAngle <= 90) then 
+			self.currentAngle = 90
+			self.rotating = false
+			LOG("Finished Camera rotation")
+		end
+		--Setting of the new position and view angle (looking towards the player)
+		newPos = vec3:new(math.cos(math.rad(self.currentAngle)) * self.cameraComp.radius, self.cameraComp.rotationCenter.y, math.sin(math.rad(self.currentAngle))*self.cameraComp.radius)
+		cameraSetPos(newPos + self.rotationCenter)
+		cameraLookAt(self.rotationCenter)
+	end
+end
+
+function CameraRotationSystem:changePerspective(event)
+	LOG("Starting Camera rotation")
+	self.sideview = not self.sideview
+	self.rotating = true
+end
+
+Manager:addSystem(CameraRotationSystem())
+
+local MoveSystem = ns.class("MoveSystem", ns.System)
 
 --data
 MoveSystem.sideview = true
@@ -30,7 +95,7 @@ end
 
 function MoveSystem:Shoot(entity, delta)
 	LOG("PEW")
-	local chan = playSound(Resources.Sounds.Oof.id)
+	local chan = playSound(resources.Sounds.Oof.id)
 	setChannelVolume(chan,1)
 	ns.spawnEntity(Manager,prefabs.Bullet({
 		Transform = {
@@ -46,6 +111,7 @@ end
 
 function MoveSystem:Change()
 	self.sideview = not self.sideview
+	Manager.eventManager:fireEvent(ns.changePerspectiveEvent(self.sideview))
 	LOG("Changing view")
 end
 
@@ -135,7 +201,6 @@ function SoundSystem:onPlay(music)
 	else
 		resumeChannel(music.channel)
 	end
-
 end
 
 function SoundSystem:onStop(music)
@@ -159,7 +224,7 @@ function SoundSystem:update(dt)
 				self:onStop(music)
 			else
 				music.isPlaying = true
-				self:onPlay(music)				
+				self:onPlay(music)
 			end
 		end
 		if music.channel == -1 then
@@ -198,6 +263,77 @@ end
 Manager:addSystem(BulletSystem())
 
 -----------------------------------------------------------
+
+local EnemyMovementSystem = ns.class("EnemyMovementSystem",ns.System)
+
+function EnemyMovementSystem:requires() return {"enemyMove"} end
+
+function EnemyMovementSystem:update(dt)
+	for _, entity in pairs(self.targets) do
+		local enemySpeed = entity:get("enemyMove").speed
+		local movement = vec3:new(-enemySpeed*dt,0,0)
+		entity.Transform:translate(movement)
+	end
+end
+
+Manager:addSystem(EnemyMovementSystem())
+
+-----------------------------------------------------------
+local EnemyCollisionSystem = ns.class("EnemyCollisionSystem",ns.System)
+
+function EnemyCollisionSystem:requires() return {"enemyCollision"} end
+
+function EnemyCollisionSystem:onCollision(enemy, other, collision)
+	-- if(other:has("bullet")) then
+		LOG("Enemy DEAD")
+		Manager:removeEntity(enemy)
+		-- end
+end
+
+function EnemyCollisionSystem:update(dt)
+end
+
+Manager:addSystem(EnemyCollisionSystem())
+
+-----------------------------------------------------------
+
+local HealthSystem = ns.class("HealthSystem",ns.System)
+
+function HealthSystem:requires() return {"health"} end
+
+function HealthSystem:changeCollider(event)
+	local rbScale = vec3:new(0, 0, 0)
+	if (event.sideview) then
+		LOG("Health collider sideview", LogLevel.Trace,1)
+		rbScale = vec3:new(10000,1,1)
+	else
+		LOG("Health collider 3D", LogLevel.Trace,1)
+		rbScale = vec3:new(1,1,1)
+	end
+	self.player.Rigidbody:setCollisionScale(rbScale)
+end
+
+function HealthSystem:onCollision(player, other, _)
+	if(not player:get("health").invulnerable and other:has("enemyMove")) then
+		LOG("Player DEAD")
+	end
+end
+
+function HealthSystem:onAddEntity(entity)
+	if(self.player ~= nil) then
+		LOG("2 players, possible conflicts with perspective",LogLevel.Error,1)
+	end
+	self.player = entity
+end
+
+function HealthSystem:initialize()
+	ns.System.initialize(self)
+	self.timer = 0 -- for invulnerability
+	self.player = nil
+	Manager.eventManager:addListener("changePerspectiveEvent", self, self.changeCollider)
+end
+
+Manager:addSystem(HealthSystem())
+
+-----------------------------------------------------------
 LOG("Systems load completed", LogLevel.Info, 1)
-
-

@@ -35,3 +35,16 @@ material Red{
 			}
 	}
 }
+
+material Skybox{
+	technique
+    {
+       pass
+        {
+          texture_unit
+          {
+            texture skybox.png cubic
+          }
+       }   
+    }
+}

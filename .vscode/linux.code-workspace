@@ -1,10 +1,12 @@
 {
 	"folders": [
 		{
-			"path": ".."
+			"name": "scripts",
+			"path": "../TaiFighter/assets/scripts"
 		},
 		{
-			"path": "../TaiFighter/assets/scripts"
+			"name": "TaiFighter",
+			"path": ".."
 		}
 	],
 	"settings": {}

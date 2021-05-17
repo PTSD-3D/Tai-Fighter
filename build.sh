@@ -31,10 +31,13 @@ printmsg() {
 
 #Moves assets to corresponding folders in bin
 move_assets() {
-	rm -rf ./bin/assets/scripts/Client # We don't want Client example scripts from Engine
-	cp -rT "./bin" "./TaiFighter"
-	cp "-rT" "./bin/assets/scripts/Engine" "./TaiFighter/assets/scripts/Engine"
+	mkdir tmp
+	cp -rf TaiFighter/assets/* tmp
+	rm -rf ./tmp/scripts
+	rsync -avu --update --progress bin/ TaiFighter/ --exclude assets/scripts/Client &> /dev/null
+	cp -r tmp/* TaiFighter/assets
 	rm -r ./bin
+	rm -r ./tmp
 }
 
 #Gets the path to the engine by param, builds it and moves assets and scritps to its corresponding places
@@ -42,13 +45,12 @@ build() {
 	local current=$(echo $PWD)
 	local path_to_engine=$1
 	#build engine
-	echo $path_to_engine
 	cd $path_to_engine
-	./build.bash "-b"
+	./build.bash &>/dev/null && echo "Engine build succesfully" 
 	cd $current
 	#Move assets and scripts
 	cp -r $path_to_engine"/bin" ./
-	move_assets
+	move_assets &>/dev/null && echo "Assets moved succesfully" 
 }
 
 #Make sure there is a .bin directory
@@ -81,11 +83,12 @@ else
 fi
 
 #We have now path_to_engine set to the engine repo in some way or form, we build it
-build $path_to_engine
+build $path_to_engine && echo "Build succesfull!!"
 
 #If execute flag is set, execute the game after build
 if [[ ! -z $xflag ]]; then
 	cd TaiFighter
+	echo "Openning TaiFighter"
 	./PTSD_Core
 fi
 exit 0

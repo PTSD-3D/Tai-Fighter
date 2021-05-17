@@ -95,7 +95,7 @@ end
 
 function MoveSystem:Shoot(entity, delta)
 	LOG("PEW")
-	local chan = playSound(resources.Sounds.Oof.id)
+	local chan = playSound(resources.Sounds.Shoot.id)
 	setChannelVolume(chan,1)
 	ns.spawnEntity(Manager,prefabs.Bullet({
 		Transform = {

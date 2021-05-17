@@ -8,5 +8,6 @@ require('BulletSystem')
 require('CameraRotationSystem')
 require('EnemyCollisionSystem')
 require('EnemyMovementSystem')
+require('HealthSystem')
 
 LOG("Systems load completed", LogLevel.Info, 1)

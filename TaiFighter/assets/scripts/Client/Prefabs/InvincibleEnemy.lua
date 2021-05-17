@@ -13,7 +13,7 @@ function pf.InvincibleEnemy(params)
 	return {
 		Components = {
 			-- Example user defined components
-			{ name = "enemyMove", arguments = {0.3}},
+			{ name = "enemyMove", arguments = {0.6}},
 			-- { name = "playerMove", arguments = { { x = 1, y = 0, z = 0 } } }
 		},
 		Transform = params.Transform,

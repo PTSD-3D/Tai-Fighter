@@ -260,6 +260,12 @@ function BulletSystem:update(dt)
 	end
 end
 
+function BulletSystem:onCollision(bullet, other, collision)
+	if(not other:has("playerMove")) then
+		print("Collision between bullet and enemy")
+		Manager:removeEntity(bullet)
+	end
+end
 Manager:addSystem(BulletSystem())
 
 -----------------------------------------------------------

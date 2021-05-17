@@ -284,18 +284,48 @@ local EnemyCollisionSystem = ns.class("EnemyCollisionSystem",ns.System)
 function EnemyCollisionSystem:requires() return {"enemyCollision"} end
 
 function EnemyCollisionSystem:onCollision(enemy, other, collision)
-	if(other:has("playerMove")) then
-		LOG("Player DEAD")
-	else
+	-- if(other:has("bullet")) then
 		LOG("Enemy DEAD")
 		Manager:removeEntity(enemy)
-		end
+		-- end
 end
 
 function EnemyCollisionSystem:update(dt)
 end
 
 Manager:addSystem(EnemyCollisionSystem())
+
+-----------------------------------------------------------
+
+local HealthSystem = ns.class("HealthSystem",ns.System)
+
+function HealthSystem:requires() return {"health"} end
+
+function HealthSystem:changeCollider(isSideView)
+	LOG("Health persp callback")
+end
+
+function HealthSystem:onCollision(player, other, _)
+	if(not player:get("health").invulnerable and other:has("enemyMove")) then
+		LOG("Player DEAD")
+	end
+end
+
+function HealthSystem:onAddEntity(entity)
+	if(self.player ~= nil) then
+		LOG("2 players, possible conflicts with perspective",LogLevel.Error,1)
+	end
+	self.player = entity
+end
+
+function HealthSystem:initialize()
+	ns.System.initialize(self)
+	self.timer = 0 -- for invulnerability
+	self.player = nil
+	Manager.eventManager:addListener("changePerspectiveEvent", self, self.changeCollider)
+end
+
+Manager:addSystem(HealthSystem())
 
 -----------------------------------------------------------
 LOG("Systems load completed", LogLevel.Info, 1)

@@ -9,5 +9,6 @@ require('CameraRotationSystem')
 require('EnemyCollisionSystem')
 require('EnemyMovementSystem')
 require('HealthSystem')
+require('PerspectiveTimerSystem')
 
 LOG("Systems load completed", LogLevel.Info, 1)

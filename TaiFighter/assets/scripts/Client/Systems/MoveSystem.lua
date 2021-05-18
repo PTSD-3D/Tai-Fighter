@@ -19,6 +19,11 @@ MoveSystem.dirs = {
 	backward = vec3:new(-1, 0, 0)
 }
 
+function MoveSystem:initialize()
+	ns.System.initialize(self)
+	Manager.eventManager:addListener("PerspectiveChangeEnd", self, self.Change)
+end
+
 function MoveSystem:requires() return { "playerMove" } end
 
 function MoveSystem:Move(entity,dir, delta, speed)
@@ -42,6 +47,8 @@ function MoveSystem:Action()
 end
 
 function MoveSystem:Change()
+	--Si la barra está cargada (2D --> 3D) o lo llama el contador (3D --> 2D)
+	--Manager.eventManager:addListener("PerspectiveChangeReady", self, self.changePerspective)
 	self.sideview = not self.sideview
 	Manager.eventManager:fireEvent(ns.changePerspectiveEvent(self.sideview))
 	LOG("Changing view")

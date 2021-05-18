@@ -17,8 +17,10 @@ function BulletSystem:update(dt)
 	end
 end
 
-function BulletSystem:onCollision(bullet,_,_)
-	Manager:removeEntity(bullet)
+function BulletSystem:onCollision(bullet,other,_)
+	if(not other:has("playerMove")) then
+		Manager:removeEntity(bullet)
+	end
 end
 
 Manager:addSystem(BulletSystem())

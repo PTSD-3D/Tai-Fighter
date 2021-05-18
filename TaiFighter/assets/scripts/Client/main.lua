@@ -24,6 +24,11 @@ setButtonFunction("PushButton","showTaiFighterUI")
 createButton("ExitButton", "Exit", "TaharezLook/Button",vec2:new(300, 300), vec2:new(200, 50))
 setButtonFunction("ExitButton","exitCallback")
 
-showTaiFighterUI()
+createButton("PlayButton", "Play", "TaharezLook/Button",vec2:new(500, 500), vec2:new(200, 50))
+setButtonFunction("PlayButton","playCallback")
+
+-- showTaiFighterUI()
+-- showPauseUI()
+showMainMenuUI()
 
 LOG("main.lua completed")

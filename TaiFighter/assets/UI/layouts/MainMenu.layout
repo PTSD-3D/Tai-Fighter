@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<GUILayout version="4" >
+    <Window type="VerticalLayoutContainer" name="VerticalLayoutContainer" >
+        <Property name="Area" value="{{0,0},{0,0},{1,0},{1,0}}" />
+        <Property name="Font" value="DejaVuSans-12" />
+        <Property name="Text" value="JUGAR" />
+        <Window type="TaharezLook/ImageButton" name="ImageButton" >
+            <Property name="Area" value="{{0,10},{0,-58.5},{0,429},{0,124.5}}" />
+            <Property name="Font" value="DejaVuSans-12" />
+            <Property name="Text" value="HOLAAA" />
+            <Property name="MaxSize" value="{{1,0},{1,0}}" />
+            <Property name="HoverImage" value="TaharezLook/ButtonMiddleHighlight" />
+            <Property name="NormalImage" value="TaharezLook/ButtonMiddleNormal" />
+            <Property name="PushedImage" value="TaharezLook/ButtonMiddlePushed" />
+            <Property name="VerticalAlignment" value="Centre" />
+            <Property name="HorizontalAlignment" value="Centre" />
+            <Window type="TaharezLook/StaticText" name="StaticText" >
+                <Property name="Area" value="{{0,53},{0,45},{0,369},{0,138}}" />
+                <Property name="Font" value="DejaVuSans-24" />
+                <Property name="Text" value="JUGAR" />
+                <Property name="MaxSize" value="{{1,0},{1,0}}" />
+                <Property name="HorzFormatting" value="CentreAligned" />
+                <Property name="HorzScrollPageSize" value="306" />
+                <Property name="VertScrollPageSize" value="83" />
+                <Property name="HorzScrollDocumentSize" value="84" />
+                <Property name="VertScrollDocumentSize" value="31.0477" />
+            </Window>
+        </Window>
+    </Window>
+</GUILayout>

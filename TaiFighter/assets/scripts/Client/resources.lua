@@ -98,6 +98,9 @@ local Resources = {
 		},
 		TitleLayout = {
 			path = "Title.layout", type=UIFileType.Layout
+		},
+		MenuLayout = {
+			path = "MainMenu.layout", type=UIFileType.Layout
 		}
 	},
 	Meshes = {

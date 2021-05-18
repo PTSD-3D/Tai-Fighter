@@ -1,5 +1,7 @@
 local ns = require('namespace')
 
+local resources = require('resources')
+
 local HealthSystem = ns.class("HealthSystem",ns.System)
 
 function HealthSystem:requires() return {"health"} end
@@ -18,6 +20,8 @@ end
 
 function HealthSystem:onCollision(player, other, _)
 	if(not player:get("health").invulnerable and other:has("enemyMove")) then
+		local chan = playSound(resources.Sounds.PlayerExplodes.id)
+		setChannelVolume(chan,1)
 		LOG("Player DEAD")
 	end
 end

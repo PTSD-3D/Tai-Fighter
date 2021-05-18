@@ -15,7 +15,8 @@ function pf.Player(params)
 			-- Example user defined components
 			{ name = "playerMove", arguments = { 1, 1, 1 }}, 
 			{ name = "boombox", arguments={0.5,false,require("resources").Sounds.PTSD_Anthem,-1}},
-			{ name = "health", arguments = { 3, false}}
+			{ name = "health", arguments = { 3, false}},
+			{ name = "variableCollider", arguments = {}}
 			-- { name = "playerMove", arguments = { { x = 1, y = 0, z = 0 } } }
 		},
 		Transform = params.Transform,

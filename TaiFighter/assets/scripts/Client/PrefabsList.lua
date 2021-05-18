@@ -5,5 +5,6 @@ require('Enemy')
 require('Player')
 require('MainCamera')
 require("InvincibleEnemy")
+require("PowerUp")
 
 require('sampleScene-config')

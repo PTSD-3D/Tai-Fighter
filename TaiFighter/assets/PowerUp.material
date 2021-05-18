@@ -108,12 +108,12 @@ material BulletMaterial3 {
             transparent_sorting on
 
             texture_unit {
-                texture Bullet Bill_tex.PNG
+                texture BulletBill_tex.PNG
                 tex_address_mode wrap
                 colour_op modulate
             }
             texture_unit {
-                texture Bullet Bill_tex.PNG
+                texture BulletBill_tex.PNG
                 tex_address_mode wrap
                 colour_op modulate
             }

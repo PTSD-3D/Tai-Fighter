@@ -10,5 +10,6 @@ require('EnemyCollisionSystem')
 require('EnemyMovementSystem')
 require('HealthSystem')
 require("VariableColliderSystem")
+require("PowerUpSystem")
 
 LOG("Systems load completed", LogLevel.Info, 1)

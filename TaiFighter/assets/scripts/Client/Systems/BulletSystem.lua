@@ -17,4 +17,8 @@ function BulletSystem:update(dt)
 	end
 end
 
+function BulletSystem:onCollision(bullet,_,_)
+	Manager:removeEntity(bullet)
+end
+
 Manager:addSystem(BulletSystem())

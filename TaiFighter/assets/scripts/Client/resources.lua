@@ -71,7 +71,18 @@ local Resources = {
 		},
 		Shoot = {
 			path = "Shoot.wav", id, tipo=SoundType.Sonido, soundChannel=SoundChannel.Dialogo, volume = 0.3
-		}
+		},
+
+		--Muscica para el juego
+		MainMenuTheme = {
+			path = "MainMenuTheme.wav", id, tipo=SoundType.Musica, volume = 0.05
+		},
+		LevelTheme = {
+			path = "LevelTheme.wav", id, tipo=SoundType.Musica, volume = 0.05
+		},
+		BossFight = {
+			path = "BossFight.wav", id, tipo=SoundType.Musica, volume = 0.05
+		},
 	},
 	UISchemes = {
 		TaharezLookScheme = {

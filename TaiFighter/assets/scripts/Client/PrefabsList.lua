@@ -4,4 +4,6 @@ require('Bullet')
 require('Enemy')
 require('Player')
 require('MainCamera')
+require("InvincibleEnemy")
+
 require('sampleScene-config')

@@ -10,5 +10,6 @@ require('EnemyCollisionSystem')
 require('EnemyMovementSystem')
 require('HealthSystem')
 require('PerspectiveTimerSystem')
+require("VariableColliderSystem")
 
 LOG("Systems load completed", LogLevel.Info, 1)

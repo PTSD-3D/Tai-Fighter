@@ -1,0 +1,122 @@
+material Heal {
+    receive_shadows on
+    technique {
+        pass {
+            diffuse 0.427059 0.023294 0.023294 1.0
+            specular 0.446407 0.430257 0.430257 1.0 57.243
+            alpha_to_coverage off
+            colour_write on
+            depth_check on
+            depth_func less_equal
+            illumination_stage 
+            light_clip_planes off
+            light_scissor off
+            normalise_normals off
+            polygon_mode solid
+            scene_blend_op add
+            shading gouraud
+            transparent_sorting on
+        }
+    }
+}
+
+material MaxHeal {
+    receive_shadows on
+    technique {
+        pass {
+            diffuse 0.623789 0.625801 0.026135 1.0
+            specular 0.454277 0.454357 0.43037 1.0 57.243
+            alpha_to_coverage off
+            colour_write on
+            depth_check on
+            depth_func less_equal
+            illumination_stage 
+            light_clip_planes off
+            light_scissor off
+            normalise_normals off
+            polygon_mode solid
+            scene_blend_op add
+            shading gouraud
+            transparent_sorting on
+        }
+    }
+}
+
+material BulletMaterial1 {
+    receive_shadows on
+    technique {
+        pass {
+            diffuse 0.0 0.0 0.0 1.0
+            specular 0.0 0.0 0.0 1.0 18.102
+            alpha_to_coverage off
+            colour_write on
+            depth_check on
+            depth_func less_equal
+            illumination_stage 
+            light_clip_planes off
+            light_scissor off
+            normalise_normals off
+            polygon_mode solid
+            scene_blend_op add
+            shading gouraud
+            transparent_sorting on
+
+        }
+    }
+}
+
+material BulletMaterial2 {
+    receive_shadows on
+    technique {
+        pass {
+            diffuse 0.0 0.0 0.0 1.0
+            specular 0.933333 0.933333 0.933333 1.0 18.102
+            alpha_to_coverage off
+            colour_write on
+            depth_check on
+            depth_func less_equal
+            illumination_stage 
+            light_clip_planes off
+            light_scissor off
+            normalise_normals off
+            polygon_mode solid
+            scene_blend_op add
+            shading gouraud
+            transparent_sorting on
+
+        }
+    }
+}
+
+material BulletMaterial3 {
+    receive_shadows on
+    technique {
+        pass {
+            diffuse 0.0 0.0 0.0 1.0
+            specular 0.588235 0.588235 0.588235 1.0 18.102
+            alpha_to_coverage off
+            colour_write on
+            depth_check on
+            depth_func less_equal
+            illumination_stage 
+            light_clip_planes off
+            light_scissor off
+            normalise_normals off
+            polygon_mode solid
+            scene_blend_op add
+            shading gouraud
+            transparent_sorting on
+
+            texture_unit {
+                texture Bullet Bill_tex.PNG
+                tex_address_mode wrap
+                colour_op modulate
+            }
+            texture_unit {
+                texture Bullet Bill_tex.PNG
+                tex_address_mode wrap
+                colour_op modulate
+            }
+        }
+    }
+}

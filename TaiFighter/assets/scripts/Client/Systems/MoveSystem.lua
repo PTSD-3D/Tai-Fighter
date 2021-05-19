@@ -19,6 +19,12 @@ MoveSystem.dirs = {
 	backward = vec3:new(-1, 0, 0)
 }
 
+function MoveSystem:initialize()
+	ns.System.initialize(self)
+	--Setting a listener for when the 3Dbar is depleated (Fires the change of perspective)
+	Manager.eventManager:addListener("PerspectiveChangeEnd", self, self.Change)
+end
+
 function MoveSystem:requires() return { "playerMove" } end
 
 function MoveSystem:Move(entity,dir, delta, speed)
@@ -41,7 +47,7 @@ function MoveSystem:Action()
 	LOG("Secondary")
 end
 
-function MoveSystem:Change()
+function MoveSystem:Change()	--Called by the key/button pressed or for the PerspectiveChangeEnd event
 	self.sideview = not self.sideview
 	Manager.eventManager:fireEvent(ns.changePerspectiveEvent(self.sideview))
 	local chan = playSound(resources.Sounds.ChangeView.id)

@@ -23,7 +23,7 @@ setButtonFunction("PushButton","showTaiFighterUI")
 
 createButton("ExitButton", "Exit", "TaharezLook/Button","DejaVuSans-12",vec2:new(300, 300), vec2:new(200, 50))
 setButtonFunction("ExitButton","exitCallback")
-createButton("PlayButton", "Play", "TaharezLook/Button","DejaVuSans-12",vec2:new(500, 500), vec2:new(200, 50))
+createButton("PlayButton", "Play", "TaharezLook/Button","DejaVuSans-12",vec2:new(.45, .7), vec2:new(.1, .05))
 setButtonFunction("PlayButton","PlayCallback")
 
 -- showTaiFighterUI()

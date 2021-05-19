@@ -1,0 +1,3 @@
+<Imageset autoScaled="true" imagefile="Title.png" name="TituloTaifighter" nativeHorzRes="1920" nativeVertRes="1080" version="2">
+    <Image height="323" name="Title" width="1152" xPos="0" yPos="0" />
+</Imageset>

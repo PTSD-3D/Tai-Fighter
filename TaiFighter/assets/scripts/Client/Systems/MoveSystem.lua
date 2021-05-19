@@ -21,6 +21,7 @@ MoveSystem.dirs = {
 
 function MoveSystem:initialize()
 	ns.System.initialize(self)
+	--Setting a listener for when the 3Dbar is depleated (Fires the change of perspective)
 	Manager.eventManager:addListener("PerspectiveChangeEnd", self, self.Change)
 end
 
@@ -46,9 +47,7 @@ function MoveSystem:Action()
 	LOG("Secondary")
 end
 
-function MoveSystem:Change()
-	--Si la barra está cargada (2D --> 3D) o lo llama el contador (3D --> 2D)
-	--Manager.eventManager:addListener("PerspectiveChangeReady", self, self.changePerspective)
+function MoveSystem:Change()	--Called by the key/button pressed or for the PerspectiveChangeEnd event
 	self.sideview = not self.sideview
 	Manager.eventManager:fireEvent(ns.changePerspectiveEvent(self.sideview))
 	local chan = playSound(resources.Sounds.ChangeView.id)

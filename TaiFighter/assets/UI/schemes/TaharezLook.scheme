@@ -1,6 +1,7 @@
 <?xml version="1.0" ?>
 <GUIScheme version="5" name="TaharezLook">
 	<Imageset filename="TaharezLook.imageset" />
+	<Imageset filename="Taifighter.imageset" />
 	<Font filename="DejaVuSans-12.font" />
 	<Font filename="DejaVuSans-24.font" />
 	<LookNFeel filename="TaharezLook.looknfeel" />

@@ -34,7 +34,7 @@ function PowerUpSystem:onCollision(powerup, other, _)
 		elseif(type==4) then
 			LOG("Conseguiste el SuperShootPowerUp yasssssss")
 		elseif(type==5) then
-			LOG("Conseguiste el TimerPowerUp yasssssss")
+			Manager.eventManager:fireEvent(ns.Add3DTimeEvent(250))
 		end
 		local chan = playSound(resources.Sounds.GetPowerUp.id)
 		setChannelVolume(chan,1)

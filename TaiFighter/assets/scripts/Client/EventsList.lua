@@ -2,3 +2,4 @@
 
 require('ChangePerspectiveEvent')
 require('PerspectiveChangeEnd')
+require('Add3DTimeEvent')

@@ -9,6 +9,7 @@ function showTaiFighterUI()
 	setWindowVisible("PlayButton", false)
 
 	changeText("Title","Payum")
+	setProgressBarValue("DimensionBar", 0.2);
 
 	setUIMouseCursorVisible(false);
 end

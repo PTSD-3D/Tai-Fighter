@@ -2,7 +2,7 @@ local ns = require('namespace')
 
 
 
-local status, ret = pcall(ns.loadScene, Manager, require('sampleScene'))
+local status, ret = pcall(ns.loadScene, Manager, require('MainMenuScene'))
 if status then
 	LOG("Scene loaded correctly")
 else
@@ -16,16 +16,15 @@ end
 -- UI Usage example
 setUIMouseCursor("TaharezLook/MouseArrow")
 
-setWindowVisible("TitleWindow", true)
+--setWindowVisible("TitleWindow", true)
 
-createButton("PushButton", "CEGUI es facilito", "TaharezLook/Button",vec2:new(300, 200), vec2:new(200, 50))
+createButton("PushButton", "CEGUI es facilito", "TaharezLook/Button","DejaVuSans-12",vec2:new(300, 200), vec2:new(200, 50))
 setButtonFunction("PushButton","showTaiFighterUI")
 
-createButton("ExitButton", "Exit", "TaharezLook/Button",vec2:new(300, 300), vec2:new(200, 50))
+createButton("ExitButton", "Exit", "TaharezLook/Button","DejaVuSans-12",vec2:new(300, 300), vec2:new(200, 50))
 setButtonFunction("ExitButton","exitCallback")
-
-createButton("PlayButton", "Play", "TaharezLook/Button",vec2:new(500, 500), vec2:new(200, 50))
-setButtonFunction("PlayButton","playCallback")
+createButton("PlayButton", "Play", "TaharezLook/Button","DejaVuSans-12",vec2:new(500, 500), vec2:new(200, 50))
+setButtonFunction("PlayButton","PlayCallback")
 
 -- showTaiFighterUI()
 -- showPauseUI()

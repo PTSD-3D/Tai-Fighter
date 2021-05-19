@@ -1,6 +1,8 @@
 function showTaiFighterUI()
 	setWindowVisible("TaiFighterWindow", true)
 	setWindowVisible("PauseWindow", false)
+	setWindowVisible("TaiFighterMainMenuWindow",false)
+
 	
 	setWindowVisible("PushButton", false)
 	setWindowVisible("ExitButton", false)
@@ -14,6 +16,7 @@ end
 function showMainMenuUI()
 	setWindowVisible("TaiFighterWindow", false)
 	setWindowVisible("PauseWindow", false)
+	setWindowVisible("TaiFighterMainMenuWindow",true)
 
 	setWindowVisible("PushButton", false)
 	setWindowVisible("ExitButton", false)
@@ -26,6 +29,7 @@ end
 
 function showPauseUI()
 	setWindowVisible("TaiFighterWindow", false)
+	setWindowVisible("TaiFighterMainMenuWindow",false)
 	setWindowVisible("PauseWindow", true)
 
 	setWindowVisible("PushButton", true)
@@ -41,7 +45,9 @@ function exitCallback()
 	LOG("EXIT place holder")
 end
 
-function playCallback()
-	LOG("PLAY placeholder")
+function PlayCallback()
+	LOG("Get into the game")
+
 	showTaiFighterUI()
+	Manager:changeScene('sampleScene')
 end

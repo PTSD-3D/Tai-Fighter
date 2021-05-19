@@ -34,7 +34,7 @@ function pf.InvincibilityPowerUp(params)
 			{ name = "scrollMovement", arguments = {0.5}}
 		},
 		Transform = params.Transform,
-		Mesh = { mesh = "Heal.mesh", material = "Heal" },
+		Mesh = { mesh = "Shield.mesh", material = "Shield" },
 		Rigidbody = {size=params.Transform.scale,mass=1,position=params.Transform.position,type=2,trigger=false,rotation=params.Transform.rotation}
 	}
 end
@@ -60,7 +60,7 @@ function pf.TimerPowerUp(params)
 			{ name = "scrollMovement", arguments = {0.5}}
 		},
 		Transform = params.Transform,
-		Mesh = { mesh = "Heal.mesh", material = "Heal" },
+		Mesh = { mesh = "3D.mesh", material = "3DMaterial" },
 		Rigidbody = {size=params.Transform.scale,mass=1,position=params.Transform.position,type=2,trigger=false,rotation=params.Transform.rotation}
 	}
 end

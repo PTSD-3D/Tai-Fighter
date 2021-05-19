@@ -29,7 +29,9 @@ function HealthSystem:update(dt)
 		if(health.invulnerabilityTime > 0) then
 			health.invulnerabilityTime = health.invulnerabilityTime - 1
 			if(health.invulnerabilityTime == 0) then
+				entity.Mesh:setMaterial("body")
 				LOG("Ya no eres invulnerable")
+			else entity.Mesh:setMaterial("bodyInvulnerable")
 			end
 		end
 	end

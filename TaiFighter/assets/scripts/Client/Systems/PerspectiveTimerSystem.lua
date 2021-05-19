@@ -4,6 +4,7 @@ local PerspectiveTimerSystem = ns.class("PerspectiveTimerSystem",ns.System)
 
 local maxTimeIn3D = 500.0 --Arround 16 seconds from full to empty
 local timeLeft = 500.0
+local progressBarPercentage = 0.0
 
 local in3DMode= false
 
@@ -33,6 +34,9 @@ function PerspectiveTimerSystem:update(dt)
 			timeLeft = maxTimeIn3D
 		end
 	end
+
+	progressBarPercentage = timeLeft / maxTimeIn3D
+	setProgressBarValue("DimensionBar", progressBarPercentage)
 
 	if timeLeft <= 0.0 then	--If we depleated the 3Dbar we fire the PerspectiveChangeEnd to notify it
 		Manager.eventManager:fireEvent(ns.PerspectiveChangeEnd())

@@ -2,7 +2,7 @@ local ns = require('namespace')
 
 
 
-local status, ret = pcall(ns.loadScene, Manager, require('sampleScene'))
+local status, ret = pcall(ns.loadScene, Manager, require('level1'))
 if status then
 	LOG("Scene loaded correctly")
 else

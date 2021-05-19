@@ -9,6 +9,7 @@ require('CameraRotationSystem')
 require('EnemyCollisionSystem')
 require('ScrollMovementSystem')
 require('HealthSystem')
+require('PerspectiveTimerSystem')
 require("VariableColliderSystem")
 require("EndZoneSystem")
 

@@ -7,17 +7,38 @@ function PowerUpSystem:requires() return { "powerUp" } end
 
 function PowerUpSystem:update(dt)
 	for _, entity in pairs(self.targets) do
-		local objectSpeed = entity:get("powerUp").speed
-		local movement = vec3:new(-objectSpeed*dt,0,0)
-		entity.Transform:translate(movement)
+		local objectSpeed = entity:get("powerUp").rotationSpeed
+		local movement = vec3:new(0,0,-objectSpeed*dt)
+		entity.Transform:rotate(movement)
 	end
 end
 
 function PowerUpSystem:onCollision(powerup, other, _)
 	if(other:has("playerMove")) then
+		local type = powerup:get("powerUp").type
+		if(type == 1) then
+			local health = other:get("health")
+			if(health.lives < health.maxLives) then
+				health.lives = health.lives + 1
+				LOG("Current lives: " .. health.lives)
+			end
+		elseif(type ==2) then
+			local health = other:get("health")
+			health.maxLives = health.maxLives + 1
+			health.lives = health.maxLives
+			LOG("Current lives: " .. health.lives)
+		elseif(type==3) then
+			local health = other:get("health")
+			health.invulnerabilityTime = 300
+			LOG("Ahora eres invulnerable por " .. health.invulnerabilityTime .. " frames")
+		elseif(type==4) then
+			LOG("Conseguiste el SuperShootPowerUp yasssssss")
+		elseif(type==5) then
+			LOG("Conseguiste el TimerPowerUp yasssssss")
+		end
 		local chan = playSound(resources.Sounds.GetPowerUp.id)
 		setChannelVolume(chan,1)
-		LOG("Conseguiste el PowerUp yasssssss")
+		
 		Manager:removeEntity(powerup)
 	end
 end

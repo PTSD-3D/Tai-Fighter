@@ -49,5 +49,5 @@ function PlayCallback()
 	LOG("Get into the game")
 
 	showTaiFighterUI()
-	Manager:changeScene('sampleScene')
+	Manager:changeScene('level1')
 end

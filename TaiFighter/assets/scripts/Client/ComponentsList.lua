@@ -12,7 +12,7 @@ ns.Component.create("scrollMovement", {"speed"})
 ns.Component.create("damagePlayer")
 ns.Component.create("enemyCollision")
 ns.Component.create("bullet",{"damage","speed","lifetime"},{damage=0,speed=3,lifetime=100}) --lifetime is in frames
-ns.Component.create("MainCamera", {"rotationCenter","radius","rotationSpeed"},{rotationCenter={x = 0.0, y = 0.0, z = -100.0}, radius=100, rotationSpeed=3})
+ns.Component.create("MainCamera", {"rotationCenter","radius","rotationSpeed"},{rotationCenter={x = -50.0, y = 0.0, z = -100.0}, radius=100, rotationSpeed=3})
 ns.Component.create("health",{"lives","maxLives","invulnerabilityTime"},{lives=3, maxLives=3, invulnerabilityTime=0})
 ns.Component.create("variableCollider")
 ns.Component.create("powerUp", {"rotationSpeed", "type"})

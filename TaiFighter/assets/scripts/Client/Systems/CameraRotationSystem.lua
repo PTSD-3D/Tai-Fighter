@@ -18,8 +18,6 @@ function CameraRotationSystem:initialize()
 	--Ogre needs an orthographic render window of a certain size. If we just use the current one it is zoomed out like crazy.
 	--I thought it was reasonable to just muliply the current window (1280x720) by a zoom factor so the scale is
 	--preserved. I don't like magic numbers but I can't figure out a better solution.
-
-	setOrthoProjection(self.orthoZoom)
 	Manager.eventManager:addListener("changePerspectiveEvent", self, self.changePerspective)
 end
 
@@ -28,6 +26,8 @@ function CameraRotationSystem:onAddEntity(entity)
 	self.rotationCenter = vec3:new(self.cameraComp.rotationCenter.x, self.cameraComp.rotationCenter.y, self.cameraComp.rotationCenter.z)
 	self.frontalPos = self.rotationCenter - vec3:new(self.cameraComp.radius, 0, 0)
 	self.sideViewPos = self.rotationCenter + vec3:new(0, 0, self.cameraComp.radius)
+	setNearClipDistance(50)
+	setOrthoProjection(self.orthoZoom)
 	cameraSetPos(self.sideViewPos)
 	cameraLookAt(self.rotationCenter)
 end

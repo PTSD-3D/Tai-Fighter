@@ -29,6 +29,8 @@ local Scene={
 		Transform = {position={x=120.64349365234375,y=0.0,z=-152.66233825683594},rotation={x=-90.00000250447816,y=630.0000926634281,z=-0.0},scale={x=3.0,y=3.0,z=3.0}}}),
 	Enemy_006=prefabs.InvincibleEnemy({
 		Transform = {position={x=150.64349365234375,y=0.0,z=-102.66233825683594},rotation={x=90,y=90,z=0},scale={x=3.0,y=3.0,z=3.0}}}),
+	PowerUp_001=prefabs.SuperShootPowerUp({
+		Transform = {position={x=200,y=0.0,z=-100},rotation={x=-90,y=-90,z=0},scale={x=0.01,y=0.01,z=0.01}}}),
 	Player=prefabs.Player({
 		Transform = {position={x=-0.0,y=0.0,z=-100.7860107421875},rotation={x=-90.00000250447816,y=90.00000250447816,z=0.0},scale={x=1.0,y=4.599999904632568,z=1.0}}})},
 		SceneConfig=prefabs.sampleScene({})

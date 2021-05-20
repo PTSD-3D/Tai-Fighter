@@ -11,10 +11,17 @@ local in3DMode= false
 function PerspectiveTimerSystem:initialize()
 	ns.System.initialize(self)
 	Manager.eventManager:addListener("changePerspectiveEvent", self, self.setPerspective)
+	Manager.eventManager:addListener("Add3DTimeEvent", self, self.addTime)
 end
 
 function PerspectiveTimerSystem:setPerspective(event)
 	in3DMode = not event.sideview	--Changes the local state wich is synchronized with MoveSystem.sideview
+end
+
+function PerspectiveTimerSystem:addTime(event)
+	timeLeft = timeLeft + event.time
+	if(timeLeft > maxTimeIn3D) then timeLeft = maxTimeIn3D end
+	LOG("Recuperaste " .. event.time .. " frames de barra 3D ahora tienes " .. timeLeft)
 end
 
 function PerspectiveTimerSystem:update(dt)

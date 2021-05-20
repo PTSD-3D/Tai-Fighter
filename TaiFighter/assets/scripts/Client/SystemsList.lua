@@ -11,6 +11,7 @@ require('ScrollMovementSystem')
 require('HealthSystem')
 require('PerspectiveTimerSystem')
 require("VariableColliderSystem")
+require("PowerUpSystem")
 require("EndZoneSystem")
 
 LOG("Systems load completed", LogLevel.Info, 1)

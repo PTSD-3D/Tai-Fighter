@@ -13,6 +13,13 @@ function CameraRotationSystem:initialize()
 	self.rotating = false
 	self.rotAngle = 90
 	self.currentAngle = 90
+	self.orthoZoom = 0.15 	
+	--I don't really understand how orthographic projection works. 
+	--Ogre needs an orthographic render window of a certain size. If we just use the current one it is zoomed out like crazy.
+	--I thought it was reasonable to just muliply the current window (1280x720) by a zoom factor so the scale is
+	--preserved. I don't like magic numbers but I can't figure out a better solution.
+
+	setOrthoProjection(self.orthoZoom)
 	Manager.eventManager:addListener("changePerspectiveEvent", self, self.changePerspective)
 end
 
@@ -52,6 +59,8 @@ end
 function CameraRotationSystem:changePerspective(event)
 	LOG("Starting Camera rotation")
 	self.sideview = not self.sideview
+	if(event.sideview) then setOrthoProjection(self.orthoZoom)
+	else setPerspectiveProjection() end
 	self.rotating = true
 end
 

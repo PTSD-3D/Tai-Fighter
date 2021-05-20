@@ -1,3 +1,23 @@
+function createDeathUI()
+	createButton("RetryButton", "Retry", "TaharezLook/Button","DejaVuSans-12",vec2:new(.45, .5), vec2:new(.1, .05))
+	setButtonFunction("RetryButton","RetryCallback")
+
+	createButton("ReturnMenuButton","Return to menu", "TaharezLook/Button","DejaVuSans-12",vec2:new(.45, .7), vec2:new(.1, .05))
+	setButtonFunction("ReturnMenuButton","ReturnMenuCallback")
+
+	hideDeathUI()
+end
+
+function showDeathUI()
+	setWindowVisible("ReturnMenuButton", true)
+	setWindowVisible("RetryButton", true)
+end
+
+function hideDeathUI()
+	setWindowVisible("ReturnMenuButton", false)
+	setWindowVisible("RetryButton", false)
+end
+
 function showTaiFighterUI()
 	setWindowVisible("TaiFighterWindow", true)
 	setWindowVisible("PauseWindow", false)
@@ -51,4 +71,15 @@ function PlayCallback()
 
 	showTaiFighterUI()
 	Manager:changeScene('level1')
+end
+
+function ReturnMenuCallback()
+	hideDeathUI()
+	showMainMenuUI()
+	Manager:changeScene('MainMenuScene')
+end
+
+function RetryCallback()
+	hideDeathUI()
+	Manager:changeScene(Manager:getCurrentSceneName())
 end

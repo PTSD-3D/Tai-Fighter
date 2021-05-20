@@ -6,11 +6,21 @@ local HealthSystem = ns.class("HealthSystem",ns.System)
 
 function HealthSystem:requires() return {"health"} end
 
+function HealthSystem:restockLives()
+	for _, entity in pairs(self.targets) do
+		local health = entity:get("health")
+		health.lives = health.maxLives
+	end
+end
+
 function HealthSystem:onCollision(player, other, _)
 	if(player:get("health").invulnerabilityTime == 0 and other:has("damagePlayer")) then
 		local health = player:get("health")
 		health.lives = health.lives -1
-		if(health.lives == 0) then LOG("Player DEAD")
+		if(health.lives == 0) then
+			 LOG("Player DEAD")
+			 showDeathUI()
+			 Manager.eventManager:fireEvent(ns.PlayerDeathEv())
 		else 
 			LOG("Current lives: " .. health.lives)
 			health.invulnerabilityTime = 60
@@ -48,6 +58,7 @@ function HealthSystem:initialize()
 	ns.System.initialize(self)
 	self.timer = 0 -- for invulnerability
 	self.player = nil
+	Manager.eventManager:addListener("ChangeSceneEvent", self, self.restockLives)
 end
 
 Manager:addSystem(HealthSystem())

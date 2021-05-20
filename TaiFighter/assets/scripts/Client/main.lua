@@ -28,6 +28,7 @@ setButtonFunction("PlayButton","PlayCallback")
 
 -- showTaiFighterUI()
 -- showPauseUI()
+createDeathUI()
 showMainMenuUI()
 
 LOG("main.lua completed")

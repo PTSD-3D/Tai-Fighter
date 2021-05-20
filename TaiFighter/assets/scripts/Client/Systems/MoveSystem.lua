@@ -19,10 +19,22 @@ MoveSystem.dirs = {
 	backward = vec3:new(-1, 0, 0)
 }
 
+function MoveSystem:stopMove()
+	self.canMove = false
+end
+
+function MoveSystem:restartMovement()
+	self.canMove = true
+end
+
 function MoveSystem:initialize()
 	ns.System.initialize(self)
+	self.canMove = true
 	--Setting a listener for when the 3Dbar is depleated (Fires the change of perspective)
 	Manager.eventManager:addListener("PerspectiveChangeEnd", self, self.Change)
+	Manager.eventManager:addListener("PlayerDeathEv", self, self.stopMove)
+	Manager.eventManager:addListener("ChangeSceneEvent", self, self.restartMovement)
+
 end
 
 function MoveSystem:requires() return { "playerMove" } end
@@ -113,6 +125,7 @@ function MoveSystem:ControllerHandleInput(entity,dt,speed)
 end
 
 function MoveSystem:update(dt)
+	if not self.canMove then return end
 	for _, entity in pairs(self.targets) do
 		local playerMoveCom = entity:get("playerMove")
 		local vx = playerMoveCom.x

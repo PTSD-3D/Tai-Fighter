@@ -7,5 +7,7 @@ require('MainCamera')
 require("InvincibleEnemy")
 require("PowerUps")
 require("EndZone")
+require("Chancla")
+require("BossZone")
 
 require('sampleScene-config')

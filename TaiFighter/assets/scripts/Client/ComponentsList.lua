@@ -17,5 +17,6 @@ ns.Component.create("health",{"lives","maxLives","invulnerabilityTime"},{lives=3
 ns.Component.create("variableCollider")
 ns.Component.create("powerUp", {"rotationSpeed", "type"})
 ns.Component.create("endzone")
+ns.Component.create("bosszone")
 
 LOG("Components load completed", LogLevel.Info, 1)

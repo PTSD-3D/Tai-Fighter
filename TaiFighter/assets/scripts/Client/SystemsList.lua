@@ -13,5 +13,6 @@ require('PerspectiveTimerSystem')
 require("VariableColliderSystem")
 require("PowerUpSystem")
 require("EndZoneSystem")
+require("BossZoneSystem")
 
 LOG("Systems load completed", LogLevel.Info, 1)

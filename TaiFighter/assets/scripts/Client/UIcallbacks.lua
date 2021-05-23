@@ -70,7 +70,7 @@ function PlayCallback()
 	LOG("Get into the game")
 
 	showTaiFighterUI()
-	Manager:changeScene('level1')
+	Manager:changeScene('bosslevel')
 end
 
 function ReturnMenuCallback()

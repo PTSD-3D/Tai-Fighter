@@ -28,8 +28,8 @@ local Scene={
 		Transform = {position={x=80,y=10.0,z=-100},rotation={x=-90,y=-90,z=0},scale={x=2,y=2,z=2}}}),
 	PowerUp_005=prefabs.TimerPowerUp({
 		Transform = {position={x=100,y=10,z=-100},rotation={x=-90,y=-90,z=0},scale={x=5,y=5,z=5}}}),
-	LaChancla=prefabs.Chancla({
-		Transform = {position={x=100,y=10,z=-100},rotation={x=-90,y=-90,z=0},scale={x=2,y=2,z=2}}}),
+	--LaChancla=prefabs.Chancla({
+		--Transform = {position={x=100,y=10,z=-100},rotation={x=-90,y=-90,z=0},scale={x=2,y=2,z=2}}}),
 	Player=prefabs.Player({
 		Transform = {position={x=-0.0,y=0.0,z=-100.7860107421875},rotation={x=-90.00000250447816,y=90.00000250447816,z=0.0},scale={x=1.0,y=4.599999904632568,z=1.0}}})},
 		SceneConfig=

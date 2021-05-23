@@ -40,7 +40,26 @@ end
 function MoveSystem:requires() return { "playerMove" } end
 
 function MoveSystem:Move(entity,dir, delta, speed)
-	entity.Transform:translate(dir * delta * speed:magnitude())
+	local translate = dir * delta * speed:magnitude()
+	local pos = entity.Transform.position + translate
+	local camPos = getCamPosition()
+	local height = getOrthoHeight()
+	local width = getOrthoWidth()
+	local playerSize = {x = 10, y = 5}
+	if(self.sideview) then
+		if(pos.x + playerSize.x <= camPos.x + width/2 and pos.x - playerSize.x >= camPos.x - width/2
+		 and pos.y + playerSize.y <= camPos.y + height/2 and pos.y - playerSize.y >= camPos.y - height/2) then 
+			entity.Transform:translate(translate)
+		end
+	else
+		local facx = (pos.x + 50) * 60/80
+		local facy = (pos.x + 50) * 35/80
+		if (pos.z <= -30 + facx and pos.z >= -170 - facx and pos.y >= -40 - facy and pos.y <= 40 + facy)
+		then 
+			entity.Transform:translate(translate)
+		end
+	end
+	--LOG("Pos: " .. pos.x .. " " .. pos.y .. " " .. pos.z)
 end
 
 function MoveSystem:Shoot(entity, delta)

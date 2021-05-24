@@ -26,14 +26,14 @@ function CameraRotationSystem:onAddEntity(entity)
 	self.rotationCenter = vec3:new(self.cameraComp.rotationCenter.x, self.cameraComp.rotationCenter.y, self.cameraComp.rotationCenter.z)
 	self.frontalPos = self.rotationCenter - vec3:new(self.cameraComp.radius, 0, 0)
 	self.sideViewPos = self.rotationCenter + vec3:new(0, 0, self.cameraComp.radius)
-	setNearClipDistance(1)
+	setNearClipDistance(0.1)
 	setOrthoProjection(self.orthoZoom)
 	cameraSetPos(self.sideViewPos)
 	cameraLookAt(self.rotationCenter)
 end
 
 function CameraRotationSystem:update(dt)
-	if (self.rotating == true) then
+	if (self.rotating) then
 		local newPos	
 		if(self.sideview) then --If we're switching from 3D to 2D	
 			self.currentAngle = self.currentAngle - self.cameraComp.rotationSpeed
@@ -52,6 +52,7 @@ function CameraRotationSystem:update(dt)
 		--Setting of the new position and view angle (looking towards the player)
 		newPos = vec3:new(math.cos(math.rad(self.currentAngle)) * self.cameraComp.radius, self.cameraComp.rotationCenter.y, math.sin(math.rad(self.currentAngle))*self.cameraComp.radius)
 		cameraSetPos(newPos + self.rotationCenter)
+		if(not self.rotating and self.sideview) then cameraSetPos(self.sideViewPos + vec3:new(0,0,100)) end
 		cameraLookAt(self.rotationCenter)
 	end
 end

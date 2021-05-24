@@ -42,11 +42,11 @@ function MoveSystem:requires() return { "playerMove" } end
 function MoveSystem:Move(entity,dir, delta, speed)
 	local translate = dir * delta * speed:magnitude()
 	local pos = entity.Transform.position + translate
-	local camPos = getCamPosition()
-	local height = getOrthoHeight()
-	local width = getOrthoWidth()
-	local playerSize = {x = 10, y = 5}
 	if(self.sideview) then
+		local camPos = getCamPosition()
+		local height = getOrthoHeight()
+		local width = getOrthoWidth()
+		local playerSize = {x = 10, y = 5}
 		if(pos.x + playerSize.x <= camPos.x + width/2 and pos.x - playerSize.x >= camPos.x - width/2
 		 and pos.y + playerSize.y <= camPos.y + height/2 and pos.y - playerSize.y >= camPos.y - height/2) then 
 			entity.Transform:translate(translate)
@@ -59,7 +59,6 @@ function MoveSystem:Move(entity,dir, delta, speed)
 			entity.Transform:translate(translate)
 		end
 	end
-	--LOG("Pos: " .. pos.x .. " " .. pos.y .. " " .. pos.z)
 end
 
 function MoveSystem:Shoot(entity, delta)
@@ -83,6 +82,27 @@ function MoveSystem:Change()	--Called by the key/button pressed or for the Persp
 	Manager.eventManager:fireEvent(ns.changePerspectiveEvent(self.sideview))
 	local chan = playSound(resources.Sounds.ChangeView.id)
 	setChannelVolume(chan,1)
+	for _, entity in pairs(self.targets) do
+		if(not self.sideview) then
+			local pos = entity.Transform.position
+			LOG("" .. pos.x .. " " .. pos.y .. " " .. pos.z)		
+			local facx = (pos.x + 50) * 60/80
+			local facy = (pos.x + 50) * 35/80
+			if (pos.z > -30 + facx) then pos.z = -30 + facx
+				elseif (pos.z < -170 - facx) then pos.z = -170 - facx end
+			if (pos.y < -40 - facy) then pos.y = -40 - facy
+				elseif (pos.y > 40 + facy) then pos.y = 40 + facy end
+			entity.Transform.position = pos
+		else
+			local pos = entity.Transform.position
+			local camPos = getCamPosition()
+			local height = getOrthoHeight()
+			local playerSize = {x = 10, y = 5}
+			if (pos.y + playerSize.y > camPos.y + height/2) then pos.y = camPos.y + height/2 - playerSize.y
+				elseif (pos.y + playerSize.y < camPos.y - height/2) then pos.y = camPos.y - height/2 + playerSize.y end
+			entity.Transform.position = pos
+		end
+	end
 	LOG("Changing view")
 end
 

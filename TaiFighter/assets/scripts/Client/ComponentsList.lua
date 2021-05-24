@@ -18,7 +18,7 @@ ns.Component.create("variableCollider")
 ns.Component.create("powerUp", {"rotationSpeed", "type"})
 ns.Component.create("endzone")
 ns.Component.create("bosszone")
-ns.Component.create("chancla", {"shootTime", "currentTime"}, {shootTime = 100, currentTime = 100})
-ns.Component.create("chanclaBullet", {"speed","lifetime"},{speed=2,lifetime=200}) --lifetime is in frames
+ns.Component.create("chancla", {"shootTime", "currentTime"}, {shootTime = 100, currentTime = 100, maxHP=10})
+ns.Component.create("chanclaBullet", {"speed","lifetime", "rotation"},{speed=2,lifetime=200,rotation=0}) --lifetime is in frames
 
 LOG("Components load completed", LogLevel.Info, 1)

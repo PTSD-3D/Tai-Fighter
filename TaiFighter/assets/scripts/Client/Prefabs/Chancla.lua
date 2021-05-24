@@ -1,15 +1,26 @@
 local pf = require("Prefab")
 
+local function scale(table, factor)
+	return {
+		x = table.x * factor,
+		y = table.y * factor,
+		z = table.z * factor
+	}
+end
+
 -- Params holds required parameters to build an instance of this prefab. This will be populated with transform information from Blender via our script in /tools
 function pf.Chancla(params)
 	return {
 		Components = {
 			-- Example user defined components
-			{ name = "variableCollider", arguments = {}},
 			{ name = "damagePlayer", arguments = {0.5}}
 		},
 		Transform = params.Transform,
-		Mesh = { mesh = "Chancla.mesh", material = "MaterialChancla" },
-		Rigidbody = {size=params.Transform.scale,mass=1,position=params.Transform.position,type=2,trigger=true,rotation=params.Transform.rotation}
+		Mesh = { mesh = "Chancla.mesh", material = "Chancla" },
+		--Rigidbody = {size=scale(params.Transform.scale, params.Scale or 1.1),mass=1,position=params.Transform.position,type=2,trigger=true,rotation=params.Transform.rotation}
+		Rigidbody = {	size={x=16,y=16,z=160},
+									mass=1,position=params.Transform.position,
+									type=2,trigger=false,
+									rotation=params.Transform.rotation}
 	}
 end

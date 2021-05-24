@@ -17,9 +17,9 @@ function BossZoneSystem:onCollision(thisZone,other,_)
         print(resources.Sounds.BossFight.id)
 		ns.spawnEntity(Manager,prefabs.Chancla({
 		Transform = {
-			position={x=20,y=10,z=-100},
+			position={x=20,y=0,z=-100},
 			rotation={x=-90,y=-90,z=0},
-			scale={x=2,y=2,z=2}}}
+			scale={x=16,y=16,z=16}}}
 			))
 		Manager:removeEntity(thisZone)
         --changeMusic(resources.Sounds.BossFight.id, true)

@@ -14,31 +14,31 @@ end
 function ChanclaSystem:update(dt)
 	for _, entity in pairs(self.targets) do
 		local chancla = entity:get("chancla")
-        local currentHP = chancla.maxHP
 		chancla.currentTime = chancla.currentTime - 1
 		if(chancla.currentTime <= 0) then
 			chancla.currentTime = chancla.shootTime
 			LOG("CHANCLAPEW")
 			local chan = playSound(resources.Sounds.Shoot.id)
 			setChannelVolume(chan,1)
-			local bulletRot = math.random(-60, 60)
 			ns.spawnEntity(Manager,prefabs.ChanclaBullet({
-			rotation = bulletRot,
+			rotation = math.random(-60, 60),
 			Transform = {
 				position={x=entity.Transform.position.x,y=entity.Transform.position.y,z=entity.Transform.position.z},
-				rotation={x=0,y=270.0,z=0.0},
-				scale={x=2,y= 2,z=2}}}
+				rotation={x=-90,y=450.0,z=0.0},
+				scale={x=20,y= 2,z=2}}}
 			))
 		end
 	end
 end
 
 function ChanclaSystem:onCollision(chancla,other,_)
-    if(other:has("playerMove")) then
-		LOG("Player collided with boss. piaum")
-        currentHP = currentHP - 1
-        if (currentHP <= 0) then
+    if(other:has("bullet")) then
+		local chanclaInfo = chancla:get("chancla")
+        print("BossHP: " .. chanclaInfo.currentHP)
+        chanclaInfo.currentHP = chanclaInfo.currentHP - 1
+        if (chanclaInfo.currentHP <= 0) then
             Manager:removeEntity(chancla)
+            Manager:changeScene("MainMenuScene")
         end
     end
 end

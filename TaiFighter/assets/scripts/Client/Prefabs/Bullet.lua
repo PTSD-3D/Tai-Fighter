@@ -9,7 +9,7 @@ function pf.Bullet(params)
 			{ name = "variableCollider", arguments = {}}
 		},
 		Transform = params.Transform,
-		Mesh = { mesh = "Kirby.mesh", material = "body" },
+		Mesh = { mesh = "BalaTaifighter.mesh", material = "Bala" },
 		Rigidbody = {size=params.Transform.scale,mass=1,position=params.Transform.position,type=2,trigger=true,rotation=params.Transform.rotation}
 	}
 end

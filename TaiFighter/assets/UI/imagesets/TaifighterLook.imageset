@@ -1,4 +1,4 @@
-<Imageset autoScaled="true" imagefile="TaiFighterImageset.png" name="TaifighterImageset" nativeHorzRes="1920" nativeVertRes="1080" version="2">
+<Imageset autoScaled="true" imagefile="TaiFighterImageset.png" name="TaifighterLook" nativeHorzRes="1920" nativeVertRes="1080" version="2">
     <Image height="323" name="Title" width="1152" xPos="0" yPos="0" />
     <Image height="63" name="StopWatch" width="56" xPos="30" yPos="383" />
     <Image height="34" name="MouseLook" width="34" xPos="198" yPos="396" />
@@ -8,4 +8,5 @@
     <Image height="135" name="ButtonRArrow" width="118" xPos="862" yPos="644" />
     <Image height="135" name="ButtonRArrow2" width="118" xPos="1140" yPos="645" />
     <Image height="135" name="ButtonLArrow2" width="118" xPos="1005" yPos="644" />
+    <Image height="34" name="MouseLookHidden" width="34" xPos="140" yPos="393" />
 </Imageset>

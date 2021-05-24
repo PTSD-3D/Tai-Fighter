@@ -63,7 +63,7 @@ function showPauseUI()
 end
 
 function exitCallback()
-	LOG("EXIT place holder")
+	ExitGame()
 end
 
 function PlayCallback()

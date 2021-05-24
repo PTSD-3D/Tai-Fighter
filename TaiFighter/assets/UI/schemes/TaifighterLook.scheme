@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<GUIScheme version="5" name="TaifighterLook">
+	<Imageset filename="TaifighterLook.imageset" />
+	<LookNFeel filename="TaifighterLook.looknfeel" />
+	<WindowRendererSet filename="CEGUICoreWindowRendererSet" />
+	<FalagardMapping windowType="TaifighterLook/StaticImage" targetType="DefaultWindow" renderer="Core/StaticImage" lookNFeel="TaifighterLook/StaticImage" />
+	<FalagardMapping windowType="TaifighterLook/Button"      targetType="CEGUI/PushButton"  renderer="Core/Button"       lookNFeel="TaifighterLook/Button" />
+	<FalagardMapping windowType="TaifighterLook/ButtonLeftArrow"      targetType="CEGUI/PushButton"  renderer="Core/Button"       lookNFeel="TaifighterLook/ButtonLeftArrow" />
+	<FalagardMapping windowType="TaifighterLook/ButtonRightArrow"      targetType="CEGUI/PushButton"  renderer="Core/Button"       lookNFeel="TaifighterLook/ButtonRightArrow" />
+</GUIScheme>
+

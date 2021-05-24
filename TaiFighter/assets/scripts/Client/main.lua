@@ -14,9 +14,8 @@ end
 --if ents ~= {} then ents[1]:add(ns.Component.all["topo"]()) end
 
 -- UI Usage example
-setUIMouseCursor("TaharezLook/MouseArrow")
-
---setWindowVisible("TitleWindow", true)
+setUIMouseCursor("TaifighterLook/MouseLook")
+setUIMouseCursorVisible(false)
 
 createButton("PushButton", "CEGUI es facilito", "TaharezLook/Button","DejaVuSans-12",vec2:new(300, 200), vec2:new(200, 50))
 setButtonFunction("PushButton","showTaiFighterUI")

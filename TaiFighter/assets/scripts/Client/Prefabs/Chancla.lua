@@ -13,7 +13,8 @@ function pf.Chancla(params)
 	return {
 		Components = {
 			-- Example user defined components
-			{ name = "damagePlayer", arguments = {0.5}}
+			{ name = "damagePlayer", arguments = {0.5}},
+			{ name = "chancla", arguments = {}}
 		},
 		Transform = params.Transform,
 		Mesh = { mesh = "Chancla.mesh", material = "Chancla" },

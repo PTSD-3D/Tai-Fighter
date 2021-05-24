@@ -14,5 +14,7 @@ require("VariableColliderSystem")
 require("PowerUpSystem")
 require("EndZoneSystem")
 require("BossZoneSystem")
+require("ChanclaSystem")
+require("ChanclaBulletSystem")
 
 LOG("Systems load completed", LogLevel.Info, 1)

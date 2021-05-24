@@ -9,5 +9,6 @@ require("PowerUps")
 require("EndZone")
 require("Chancla")
 require("BossZone")
+require('ChanclaBullet')
 
 require('sampleScene-config')

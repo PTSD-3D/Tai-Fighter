@@ -14,7 +14,7 @@ function pf.Enemy(params)
 		Components = {
 			-- Example user defined components
 			{ name = "scrollMovement", arguments = {0.5}},
-			{ name = "damagePlayer", arguments = {0.5}},
+			{ name = "damagePlayer", arguments = {}},
 			{ name = "enemyCollision", arguments={}},
 			-- { name = "playerMove", arguments = { { x = 1, y = 0, z = 0 } } }
 		},

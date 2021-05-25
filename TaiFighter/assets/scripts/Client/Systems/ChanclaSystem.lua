@@ -15,34 +15,29 @@ function ChanclaSystem:update(dt)
 	for _, entity in pairs(self.targets) do
 		local chancla = entity:get("chancla")
 		local tr = entity.Transform
-
-		if(chancla.attackTimer <= 0) then chancla.attackTimer = math.random(chancla.attackMinTime, chancla.attackMaxTime) end
-		chancla.attackTimer = chancla.attackTimer - 1
-		if(chancla.attackTimer <= 0) then chancla.state = 1 end
-
-		if(chancla.state == 0) then
-			chancla.shootTimer = chancla.shootTimer + 1
-			if(chancla.shootTimer >= chancla.shootTime) then
-				chancla.shootTimer = 0
-				LOG("CHANCLAPEW")
-				local chan = playSound(resources.Sounds.Shoot.id)
-				setChannelVolume(chan,1)
-				ns.spawnEntity(Manager,prefabs.ChanclaBullet({
-				rotation = math.random(-60, 60),
+		chancla.shootTimer = chancla.shootTimer + 1
+		if(chancla.shootTimer >= chancla.shootTime) then
+			chancla.shootTimer = 0
+			local chance = math.random(0,100)
+			if(chance >= 95) then
+				ns.spawnEntity(Manager,prefabs.ChanclaFake({
 				Transform = {
-					position={x=tr.position.x,y=tr.position.y,z=tr.position.z},
-					rotation={x=-90,y=450.0,z=0.0},
-					scale={x=20,y=1,z=1}}}
-				))
+				position={x=tr.position.x,y=tr.position.y,z=tr.position.z},
+				rotation={x=-90,y=-90,z=0.0},
+				scale={x=16,y=16,z=16}}}
+			))
+		else
+			LOG("CHANCLAPEW")
+			local chan = playSound(resources.Sounds.Shoot.id)
+			setChannelVolume(chan,1)
+			ns.spawnEntity(Manager,prefabs.ChanclaBullet({
+			rotation = math.random(-60, 60),
+			Transform = {
+				position={x=tr.position.x,y=tr.position.y,z=tr.position.z},
+				rotation={x=-90,y=450.0,z=0.0},
+				scale={x=20,y=3,z=2}}}
+			))
 			end
-		elseif(chancla.state == 1)  then
-			local movement = vec3:new(-chancla.speed * dt, 0, 0)
-			entity.Transform:translate(movement)
-			if(tr.position.x <= -140) then chancla.state = 2 end
-		elseif(chancla.state == 2) then
-			local movement = vec3:new(chancla.speed * dt, 0, 0)
-			entity.Transform:translate(movement)
-			if(tr.position.x >= 30) then chancla.state = 0 end
 		end
 	end
 end

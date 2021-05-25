@@ -13,7 +13,6 @@ function ChanclaBulletSystem:update(dt)
 	for _, entity in pairs(self.targets) do
 		local bulletInfo = entity:get("chanclaBullet")
 		local movement = vec3:new(-math.cos(math.rad(bulletInfo.rotation)) * bulletInfo.speed*dt,math.sin(math.rad(bulletInfo.rotation))*bulletInfo.speed*dt,0)
-		print(bulletInfo.rotation)
 		entity.Transform:translate(movement)
 		bulletInfo.lifetime = bulletInfo.lifetime - 1
 		if(bulletInfo.lifetime <= 0) then

@@ -16,5 +16,6 @@ require("EndZoneSystem")
 require("BossZoneSystem")
 require("ChanclaSystem")
 require("ChanclaBulletSystem")
+require("ChanclaGuardPatrolSystem")
 
 LOG("Systems load completed", LogLevel.Info, 1)

@@ -57,7 +57,7 @@ function MoveSystem:Shoot(entity, delta)
 			scale={x=2,y= 2,z=2}}}
 	))
 	elseif(player.superShots>0)then
-		local chan = playSound(resources.Sounds.Shoot.id)
+		local chan = playSound(resources.Sounds.HugeShoot.id)
 		setChannelVolume(chan,1)
 		ns.spawnEntity(Manager,prefabs.SuperShot({
 			Transform = {

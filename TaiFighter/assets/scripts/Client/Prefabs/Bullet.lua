@@ -13,3 +13,16 @@ function pf.Bullet(params)
 		Rigidbody = {size=params.Transform.scale,mass=1,position=params.Transform.position,type=2,trigger=true,rotation=params.Transform.rotation}
 	}
 end
+
+function pf.SuperShot(params)
+	return {
+		Components = {
+			-- Example user defined components
+			{ name = "bullet", arguments = {5,10,100} },
+			{ name = "variableCollider", arguments = {}}
+		},
+		Transform = params.Transform,
+		Mesh = { mesh = "Kirby.mesh", material = "Bala" },
+		Rigidbody = {size=params.Transform.scale,mass=1,position=params.Transform.position,type=2,trigger=true,rotation=params.Transform.rotation}
+	}
+end

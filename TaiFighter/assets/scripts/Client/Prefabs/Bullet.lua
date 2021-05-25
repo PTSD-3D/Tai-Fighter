@@ -22,7 +22,7 @@ function pf.SuperShot(params)
 			{ name = "variableCollider", arguments = {}}
 		},
 		Transform = params.Transform,
-		Mesh = { mesh = "Kirby.mesh", material = "Bala" },
+		Mesh = { mesh = "BalaTaifighter.mesh", material = "BalaSuper" },
 		Rigidbody = {size=params.Transform.scale,mass=1,position=params.Transform.position,type=2,trigger=true,rotation=params.Transform.rotation}
 	}
 end

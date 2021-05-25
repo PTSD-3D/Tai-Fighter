@@ -17,10 +17,8 @@ end
 setUIMouseCursor("TaifighterLook/MouseLook")
 setUIMouseCursorVisible(false)
 
--- showTaiFighterUI()
--- showPauseUI()
-createDeathUI()
-CreateMainMenuUIButtons()
+CreateUIs()
 ShowMainMenuUI()
+
 
 LOG("main.lua completed")

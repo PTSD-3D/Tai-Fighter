@@ -8,7 +8,7 @@ function CreateMainMenuUIButtons()
 	setButtonFunction("SettingsButton","SwitchToSettingsMenu")
 
 	createButton("ExitButton", "Exit", "TaifighterLook/Button", "LemonMilk-41", vec2:new(0.35, 0.77), vec2:new(0.3, 0.12))
-	--setButtonFunction("ExitButton","ExitCallback")
+	setButtonFunction("ExitButton","ExitCallback")
 end
 
 function ShowMainMenuUI()
@@ -95,18 +95,40 @@ end
 
 --Pause UI
 
-function showPauseUI()
-	setWindowVisible("TaiFighterWindow", false)
-	setWindowVisible("TaiFighterMainMenuWindow",false)
+function CreatePauseUI()
+	createButton("ContinueButtonPause", "Continue", "TaifighterLook/Button", "LemonMilk-41", vec2:new(0.35, 0.4), vec2:new(0.3, 0.12))
+	setButtonFunction("ContinueButtonPause","ContinueFromPause")
+
+	createButton("MainMenuButtonPause", "Main menu", "TaifighterLook/Button", "LemonMilk-41", vec2:new(0.35, 0.57), vec2:new(0.3, 0.12))
+	setButtonFunction("MainMenuButtonPause","ReturnMenuCallback")
+
+	createButton("ExitButtonPause", "Exit", "TaifighterLook/Button", "LemonMilk-41", vec2:new(0.35, 0.74), vec2:new(0.3, 0.12))
+	setButtonFunction("ExitButtonPause","ExitCallback")
+
+	HidePauseUI()
+end
+
+function ShowPauseUI()
 	setWindowVisible("PauseWindow", true)
 
-	setWindowVisible("PushButton", true)
-	setWindowVisible("ExitButton", true)
-	setWindowVisible("PlayButton", false)
-
-	changeText("Title","TaiFighter")
+	setWindowVisible("ContinueButtonPause", true)
+	setWindowVisible("MainMenuButtonPause", true)
+	setWindowVisible("ExitButtonPause", true)
 
 	setUIMouseCursorVisible(true);
+end
+
+function HidePauseUI()
+	setWindowVisible("PauseWindow", false)
+
+	setWindowVisible("ContinueButtonPause", false)
+	setWindowVisible("MainMenuButtonPause", false)
+	setWindowVisible("ExitButtonPause", false)
+end
+
+function ContinueFromPause()
+	HidePauseUI()
+	--ShowGameUI()
 end
 
 --General callbacks
@@ -117,6 +139,7 @@ end
 
 function ReturnMenuCallback()
 	hideDeathUI()
+	HidePauseUI()
 	ShowMainMenuUI()
 	Manager:changeScene('MainMenuScene')
 end
@@ -129,4 +152,11 @@ end
 function SwitchToSettingsMenu()
 	HideMainMenuUI()
 	ShowSettingsUI()
+end
+
+function CreateUIs()
+	createDeathUI()
+	CreateMainMenuUIButtons()
+	CreateSettingsUI()
+	CreatePauseUI()
 end

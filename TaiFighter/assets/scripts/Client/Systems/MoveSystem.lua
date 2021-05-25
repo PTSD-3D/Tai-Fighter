@@ -45,9 +45,9 @@ end
 
 function MoveSystem:Shoot(entity, delta)
 	LOG("PEW")
-	local player = entity:get("playerMove")
+	local player = entity:get("superShoot")
 
-	if(player.superShots == 0) then
+	if(player.shoots == 0) then
 	local chan = playSound(resources.Sounds.Shoot.id)
 	setChannelVolume(chan,1)
 	ns.spawnEntity(Manager,prefabs.Bullet({
@@ -56,7 +56,7 @@ function MoveSystem:Shoot(entity, delta)
 			rotation={x=0.0,y=90.0,z=0.0},
 			scale={x=2,y= 2,z=2}}}
 	))
-	elseif(player.superShots>0)then
+	elseif(player.shoots>0)then
 		local chan = playSound(resources.Sounds.HugeShoot.id)
 		setChannelVolume(chan,1)
 		ns.spawnEntity(Manager,prefabs.SuperShot({
@@ -65,7 +65,7 @@ function MoveSystem:Shoot(entity, delta)
 				rotation={x=0.0,y=90.0,z=0.0},
 				scale={x=2,y= 2,z=2}}}
 		))
-		player.superShots = player.superShots - 1
+		player.shoots = player.shoots - 1
 	end
 end
 

@@ -16,7 +16,8 @@ function pf.Player(params)
 			{ name = "playerMove", arguments = { 1, 1, 1 }}, 
 			{ name = "boombox", arguments={0.5,false,require('resources').Sounds.LevelTheme,-1}},
 			{ name = "health", arguments = { 3, false}},
-			{ name = "variableCollider", arguments = {}}
+			{ name = "variableCollider", arguments = {}},
+			{ name = "superShoot" , arguments = {0}}
 			-- { name = "playerMove", arguments = { { x = 1, y = 0, z = 0 } } }
 		},
 		Transform = params.Transform,

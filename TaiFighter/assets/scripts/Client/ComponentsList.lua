@@ -5,7 +5,7 @@ local ns = require("namespace")
 
 LOG("Loading components...", LogLevel.Info, 1)
 
-ns.Component.create("playerMove",{"x","y","z","superShots"},{superShots=0})
+ns.Component.create("playerMove",{"x","y","z"})
 ns.Component.create("boombox",{"volume","isPlaying","sound","channel"})
 ns.Component.create("topo")
 ns.Component.create("scrollMovement", {"speed"})
@@ -17,5 +17,6 @@ ns.Component.create("health",{"lives","maxLives","invulnerabilityTime"},{lives=3
 ns.Component.create("variableCollider")
 ns.Component.create("powerUp", {"rotationSpeed", "type"})
 ns.Component.create("endzone")
+ns.Component.create("superShoot",{"shoots"},{shoots = 0})
 
 LOG("Components load completed", LogLevel.Info, 1)

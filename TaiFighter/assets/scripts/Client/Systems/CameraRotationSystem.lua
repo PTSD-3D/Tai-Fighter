@@ -52,8 +52,18 @@ function CameraRotationSystem:update(dt)
 		--Setting of the new position and view angle (looking towards the player)
 		newPos = vec3:new(math.cos(math.rad(self.currentAngle)) * self.cameraComp.radius, self.cameraComp.rotationCenter.y, math.sin(math.rad(self.currentAngle))*self.cameraComp.radius)
 		cameraSetPos(newPos + self.rotationCenter)
-		if(not self.rotating and self.sideview) then cameraSetPos(self.sideViewPos + vec3:new(0,0,100)) end
 		cameraLookAt(self.rotationCenter)
+		if(not self.rotating) then
+			local camPos
+			if (self.sideview) then 
+				camPos = self.sideViewPos + vec3:new(0,0,(getWindowWidth()-620)/10)
+				cameraSetPos(camPos)
+			else 
+				camPos = self.frontalPos + vec3:new(-(getWindowWidth()-1280)/10,0,0)
+				cameraSetPos(camPos)
+			end
+			Manager.eventManager:fireEvent(ns.CameraRotationEnd(camPos)) --we send it because cameraSetPos is not fast enough
+		end
 	end
 end
 

@@ -24,7 +24,8 @@ end
 function ScrollMovementSystem:initialize()
 	ns.System.initialize(self)
 	self.scrolling = true
-	Manager.eventManager:addListener("PlayerDeathEv", self, self.forceStop)
+	Manager.eventManager:addListener("PauseGameEv", self, self.forceStop)
+	Manager.eventManager:addListener("ResumeGameEv",self,self.restartMovement)
 	Manager.eventManager:addListener("ChangeSceneEvent", self, self.restartMovement)
 end
 

@@ -120,6 +120,7 @@ end
 function ContinueFromPause()
 	HidePauseUI()
 	--ShowGameUI()
+	Manager.eventManager:fireEvent(require('namespace').ResumeGameEv())
 end
 
 --General callbacks

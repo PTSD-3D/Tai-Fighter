@@ -32,7 +32,8 @@ function MoveSystem:initialize()
 	self.canMove = true
 	--Setting a listener for when the 3Dbar is depleated (Fires the change of perspective)
 	Manager.eventManager:addListener("PerspectiveChangeEnd", self, self.Change)
-	Manager.eventManager:addListener("PlayerDeathEv", self, self.stopMove)
+	Manager.eventManager:addListener("PauseGameEv", self, self.stopMove)
+	Manager.eventManager:addListener("ResumeGameEv",self,self.restartMovement)
 	Manager.eventManager:addListener("ChangeSceneEvent", self, self.restartMovement)
 	Manager.eventManager:addListener("CameraRotationEnd", self, self.boundPlayer)
 end
@@ -93,7 +94,6 @@ function MoveSystem:boundPlayer(event)
 end
 
 function MoveSystem:Shoot(entity, delta)
-	LOG("PEW")
 	local player = entity:get("superShoot")
 
 	if(player.shoots == 0) then
@@ -188,19 +188,27 @@ function MoveSystem:ControllerHandleInput(entity,dt,speed)
 end
 
 function MoveSystem:update(dt)
-	if not self.canMove then return end
 	for _, entity in pairs(self.targets) do
-		local playerMoveCom = entity:get("playerMove")
-		local vx = playerMoveCom.x
-		local vy = playerMoveCom.y
-		local vz = playerMoveCom.z
-		local speed = vec3:new(vx, vy, vz)
-		self:KeyboardHandleInput(entity,dt,speed)
-		self:ControllerHandleInput(entity,dt,speed)
-	end
+		if self.canMove then
+			local playerMoveCom = entity:get("playerMove")
+			local vx = playerMoveCom.x
+			local vy = playerMoveCom.y
+			local vz = playerMoveCom.z
+			local speed = vec3:new(vx, vy, vz)
+			self:KeyboardHandleInput(entity,dt,speed)
+			self:ControllerHandleInput(entity,dt,speed)	
+		end
 
-	if keyJustPressed(PTSDKeys.P) then
-		ShowPauseUI()
+		if keyJustPressed(PTSDKeys.P) then
+			self.canMove = not self.canMove
+			if self.canMove then
+				HidePauseUI()
+				Manager.eventManager:fireEvent(ns.ResumeGameEv())
+			else
+				ShowPauseUI()
+				Manager.eventManager:fireEvent(ns.PauseGameEv())
+			end
+		end
 	end
 end
 

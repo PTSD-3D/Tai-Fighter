@@ -13,22 +13,12 @@ end
 --local ents = Manager:getEntitiesWithComponent("playerMove")
 --if ents ~= {} then ents[1]:add(ns.Component.all["topo"]()) end
 
--- UI Usage example
-setUIMouseCursor("TaharezLook/MouseArrow")
+--UI setup
+setUIMouseCursor("TaifighterLook/MouseLook")
+setUIMouseCursorVisible(false)
 
---setWindowVisible("TitleWindow", true)
+CreateUIs()
+ShowMainMenuUI()
 
-createButton("PushButton", "CEGUI es facilito", "TaharezLook/Button","DejaVuSans-12",vec2:new(300, 200), vec2:new(200, 50))
-setButtonFunction("PushButton","showTaiFighterUI")
-
-createButton("ExitButton", "Exit", "TaharezLook/Button","DejaVuSans-12",vec2:new(300, 300), vec2:new(200, 50))
-setButtonFunction("ExitButton","exitCallback")
-createButton("PlayButton", "Play", "TaharezLook/Button","DejaVuSans-12",vec2:new(.45, .7), vec2:new(.1, .05))
-setButtonFunction("PlayButton","PlayCallback")
-
--- showTaiFighterUI()
--- showPauseUI()
-createDeathUI()
-showMainMenuUI()
 
 LOG("main.lua completed")

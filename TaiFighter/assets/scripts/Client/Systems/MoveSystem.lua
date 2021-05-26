@@ -94,6 +94,9 @@ end
 
 function MoveSystem:Shoot(entity, delta)
 	LOG("PEW")
+	local player = entity:get("superShoot")
+
+	if(player.shoots == 0) then
 	local chan = playSound(resources.Sounds.Shoot.id)
 	setChannelVolume(chan,1)
 	ns.spawnEntity(Manager,prefabs.Bullet({
@@ -102,6 +105,17 @@ function MoveSystem:Shoot(entity, delta)
 			rotation={x=0.0,y=90.0,z=0.0},
 			scale={x=2,y= 2,z=2}}}
 	))
+	elseif(player.shoots>0)then
+		local chan = playSound(resources.Sounds.HugeShoot.id)
+		setChannelVolume(chan,1)
+		ns.spawnEntity(Manager,prefabs.SuperShot({
+			Transform = {
+				position={x=entity.Transform.position.x,y=entity.Transform.position.y,z=entity.Transform.position.z},
+				rotation={x=0.0,y=90.0,z=0.0},
+				scale={x=4,y= 4,z=4}}}
+		))
+		player.shoots = player.shoots - 1
+	end
 end
 
 function MoveSystem:Action()
@@ -183,6 +197,10 @@ function MoveSystem:update(dt)
 		local speed = vec3:new(vx, vy, vz)
 		self:KeyboardHandleInput(entity,dt,speed)
 		self:ControllerHandleInput(entity,dt,speed)
+	end
+
+	if keyJustPressed(PTSDKeys.P) then
+		ShowPauseUI()
 	end
 end
 

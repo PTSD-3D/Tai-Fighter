@@ -73,8 +73,7 @@ function PlayCallback()
 
 	showTaiFighterUI()
 	Manager:changeScene('bosslevel')
-	print(resources.Sounds.BossFight.id)
-	playMusic(resources.Sounds.BossFight.id,false)
+	playMusic(resources.Sounds.LevelTheme.id,false)
 end
 
 function ReturnMenuCallback()

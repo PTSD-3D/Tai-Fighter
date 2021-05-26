@@ -16,7 +16,7 @@ function BossZoneSystem:onCollision(thisZone,other,_)
 		LOG("Player collided with bossZone. Now play the dank music")
 		self:spawnBoss()
 		Manager:removeEntity(thisZone)
-        --changeMusic(resources.Sounds.BossFight.id, true)
+        changeMusic(resources.Sounds.BossFight.id, true)
 	end
 end
 

@@ -5,11 +5,24 @@ function pf.Bullet(params)
 	return {
 		Components = {
 			-- Example user defined components
-			{ name = "bullet", arguments = {1,3,100} },
+			{ name = "bullet", arguments = {1,90,100} },
 			{ name = "variableCollider", arguments = {}}
 		},
 		Transform = params.Transform,
 		Mesh = { mesh = "BalaTaifighter.mesh", material = "Bala" },
+		Rigidbody = {size=params.Transform.scale,mass=1,position=params.Transform.position,type=2,trigger=true,rotation=params.Transform.rotation}
+	}
+end
+
+function pf.SuperShot(params)
+	return {
+		Components = {
+			-- Example user defined components
+			{ name = "bullet", arguments = {5,10,100} },
+			{ name = "variableCollider", arguments = {}}
+		},
+		Transform = params.Transform,
+		Mesh = { mesh = "BalaTaifighter.mesh", material = "BalaSuper" },
 		Rigidbody = {size=params.Transform.scale,mass=1,position=params.Transform.position,type=2,trigger=true,rotation=params.Transform.rotation}
 	}
 end

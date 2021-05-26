@@ -8,4 +8,6 @@
     <Image height="135" name="ButtonRArrow" width="118" xPos="862" yPos="644" />
     <Image height="135" name="ButtonRArrow2" width="118" xPos="1140" yPos="645" />
     <Image height="135" name="ButtonLArrow2" width="118" xPos="1005" yPos="644" />
+    <Image height="44" name="GoldLife" width="48" xPos="112" yPos="634" />
+    <Image height="44" name="Life" width="48" xPos="50" yPos="633" />
 </Imageset>

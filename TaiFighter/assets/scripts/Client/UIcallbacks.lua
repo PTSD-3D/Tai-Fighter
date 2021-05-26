@@ -35,22 +35,8 @@ function PlayCallback()
 	LOG("Get into the game")
 
 	HideMainMenuUI()
-	--ShowTaiFighterUI()
 	Manager:changeScene('level1')
-end
-
---Settings UI
-
-function CreateSettingsUI()
-
-end
-
-function ShowSettingsUI()
-
-end
-
-function HideSettingsUI()
-
+	ShowTaiFighterUI()
 end
 
 --Death UI
@@ -79,18 +65,23 @@ end
 
 function ShowTaiFighterUI()
 	setWindowVisible("TaiFighterWindow", true)
-	setWindowVisible("PauseWindow", false)
-	setWindowVisible("TaiFighterMainMenuWindow",false)
-
 	
-	setWindowVisible("PushButton", false)
-	setWindowVisible("ExitButton", false)
-	setWindowVisible("PlayButton", false)
+	setWindowVisible("ExtraLife",false)
 
-	changeText("Title","Payum")
 	setProgressBarValue("DimensionBar", 0.2);
 
 	setUIMouseCursorVisible(false);
+end
+
+function UpdateGameUI(lives)
+	setWindowVisible("Life0",lives>0 and true or false) --Ternary operator
+	setWindowVisible("Life1",lives>1 and true or false)
+	setWindowVisible("Life2",lives>2 and true or false)
+	setWindowVisible("ExtraLife",lives>3 and true or false)
+end
+
+function HideTaiFighterUI()
+	setWindowVisible("TaiFighterWindow",false)
 end
 
 --Pause UI
@@ -140,6 +131,7 @@ end
 function ReturnMenuCallback()
 	HideDeathUI()
 	HidePauseUI()
+	HideTaiFighterUI()
 	ShowMainMenuUI()
 	Manager:changeScene('MainMenuScene')
 end
@@ -157,6 +149,6 @@ end
 function CreateUIs()
 	CreateDeathUI()
 	CreateMainMenuUIButtons()
-	CreateSettingsUI()
+	--CreateSettingsUI()
 	CreatePauseUI()
 end

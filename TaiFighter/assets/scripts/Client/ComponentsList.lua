@@ -20,5 +20,6 @@ ns.Component.create("bosszone")
 ns.Component.create("chancla", {"shootTime", "shootTimer", "currentHP", "attackMinTime", "attackMaxTime", "attackTimer", "attackTime", "state", "speed"}, {shootTime = 20, shootTimer = 0, currentHP=50, attackMinTime = 100, attackMaxTime = 1000, attackTimer = 0, state = 1, speed = 2}) --state 0 = shooting 1 = attacking 2 = returning
 ns.Component.create("chanclaBullet", {"speed","lifetime", "rotation"},{speed=600,lifetime=200,rotation=0})
 ns.Component.create("chanclaGuardPatrol", {"pos1", "pos2", "dir", "speed"})
+ns.Component.create("superShoot",{"shoots"},{shoots = 0})
 
 LOG("Components load completed", LogLevel.Info, 1)

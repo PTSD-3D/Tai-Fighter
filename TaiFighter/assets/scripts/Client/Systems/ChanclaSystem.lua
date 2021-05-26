@@ -30,12 +30,13 @@ function ChanclaSystem:update(dt)
 			LOG("CHANCLAPEW")
 			local chan = playSound(resources.Sounds.Shoot.id)
 			setChannelVolume(chan,1)
+			local randRotation = math.random(-60, 60)
 			ns.spawnEntity(Manager,prefabs.ChanclaBullet({
-			rotation = math.random(-60, 60),
+			rotation = randRotation,
 			Transform = {
 				position={x=tr.position.x,y=tr.position.y,z=tr.position.z},
-				rotation={x=-90,y=450.0,z=0.0},
-				scale={x=20,y=3,z=2}}}
+				rotation={x=-90 ,y=270.0,z=180.0},
+				scale={x=5,y=5,z=5}}}
 			))
 			end
 		end
@@ -53,6 +54,7 @@ function ChanclaSystem:onCollision(chancla,other,_)
         if (chanclaInfo.currentHP <= 0) then
             Manager:removeEntity(chancla)
             Manager:changeScene("MainMenuScene")
+			ReturnMenuCallback()
         end
     end
 end

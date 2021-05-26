@@ -9,7 +9,7 @@ function pf.ChanclaBullet(params)
 			{ name = "damagePlayer", arguments = {}}
 		},
 		Transform = params.Transform,
-		Mesh = { mesh = "InvincibleEnemy.mesh", material = "Chancla" },
+		Mesh = { mesh = "InvincibleEnemy.mesh", material = "InvincibleEnemy" },
 		Rigidbody = {size=params.Transform.scale,mass=1,position=params.Transform.position,type=2,trigger=true,rotation=params.Transform.rotation}
 	}
 end

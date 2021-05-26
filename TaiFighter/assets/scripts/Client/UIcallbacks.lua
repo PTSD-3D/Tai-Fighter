@@ -73,13 +73,14 @@ function PlayCallback()
 
 	showTaiFighterUI()
 	Manager:changeScene('bosslevel')
-	playMusic(resources.Sounds.LevelTheme.id,false)
+	changeMusic(resources.Sounds.LevelTheme.id,true)
 end
 
 function ReturnMenuCallback()
 	hideDeathUI()
 	showMainMenuUI()
 	Manager:changeScene('MainMenuScene')
+	changeMusic(resources.Sounds.MainMenuTheme.id,true)
 end
 
 function RetryCallback()

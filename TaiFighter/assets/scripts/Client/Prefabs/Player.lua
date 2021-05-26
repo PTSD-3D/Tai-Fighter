@@ -13,7 +13,7 @@ function pf.Player(params)
 	return {
 		Components = {
 			-- Example user defined components
-			{ name = "playerMove", arguments = { 1, 1, 1 }}, 
+			{ name = "playerMove", arguments = { 30, 30, 30 }},
 			{ name = "health", arguments = { 3, false}},
 			{ name = "variableCollider", arguments = {}}
 			-- { name = "playerMove", arguments = { { x = 1, y = 0, z = 0 } } }

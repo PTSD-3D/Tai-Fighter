@@ -6,7 +6,7 @@ function pf.EndZone(params)
 		Components = {
 			-- Example user defined components
 			{ name = "endzone",arguments={}},
-            { name = "scrollMovement", arguments = {0.5}}
+            { name = "scrollMovement", arguments = {15}}
 		},
 		Transform = params.Transform,
         Mesh = {mesh="Cube.mesh", material="Green"},

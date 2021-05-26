@@ -4,8 +4,8 @@ function pf.HealPowerUp(params)
 	return {
 		Components = {
 			-- Example user defined components
-			{ name = "powerUp", arguments = {5, 1}},
-			{ name = "scrollMovement", arguments = {0.5}}
+			{ name = "powerUp", arguments = {150, 1}},
+			{ name = "scrollMovement", arguments = {15}}
 		},
 		Transform = params.Transform,
 		Mesh = { mesh = "Heal.mesh", material = "Heal" },
@@ -17,8 +17,8 @@ function pf.ExtraHealPowerUp(params)
 	return {
 		Components = {
 			-- Example user defined components
-			{ name = "powerUp", arguments = {5, 2}},
-			{ name = "scrollMovement", arguments = {0.5}}
+			{ name = "powerUp", arguments = {150, 2}},
+			{ name = "scrollMovement", arguments = {15}}
 		},
 		Transform = params.Transform,
 		Mesh = { mesh = "Heal.mesh", material = "MaxHeal" },
@@ -30,8 +30,8 @@ function pf.InvincibilityPowerUp(params)
 	return {
 		Components = {
 			-- Example user defined components
-			{ name = "powerUp", arguments = {5, 3}},
-			{ name = "scrollMovement", arguments = {0.5}}
+			{ name = "powerUp", arguments = {150, 3}},
+			{ name = "scrollMovement", arguments = {15}}
 		},
 		Transform = params.Transform,
 		Mesh = { mesh = "Shield.mesh", material = "Shield" },
@@ -43,8 +43,8 @@ function pf.SuperShootPowerUp(params)
 	return {
 		Components = {
 			-- Example user defined components
-			{ name = "powerUp", arguments = {5, 4}},
-			{ name = "scrollMovement", arguments = {0.5}}
+			{ name = "powerUp", arguments = {150, 4}},
+			{ name = "scrollMovement", arguments = {15}}
 		},
 		Transform = params.Transform,
 		Mesh = { mesh = "BulletPowerUp.mesh", material = "BulletMaterial3" },
@@ -56,8 +56,8 @@ function pf.TimerPowerUp(params)
 	return {
 		Components = {
 			-- Example user defined components
-			{ name = "powerUp", arguments = {5, 5}},
-			{ name = "scrollMovement", arguments = {0.5}}
+			{ name = "powerUp", arguments = {150, 5}},
+			{ name = "scrollMovement", arguments = {15}}
 		},
 		Transform = params.Transform,
 		Mesh = { mesh = "3D.mesh", material = "3DMaterial" },

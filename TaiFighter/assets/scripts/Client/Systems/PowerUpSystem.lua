@@ -34,6 +34,8 @@ function PowerUpSystem:onCollision(powerup, other, _)
 			health.invulnerabilityTime = 300
 			LOG("Ahora eres invulnerable por " .. health.invulnerabilityTime .. " frames")
 		elseif(type==4) then
+			local player = other:get("superShoot")
+			player.shoots = 10
 			LOG("Conseguiste el SuperShootPowerUp yasssssss")
 		elseif(type==5) then
 			Manager.eventManager:fireEvent(ns.Add3DTimeEvent(250))

@@ -35,16 +35,68 @@ function MoveSystem:initialize()
 	Manager.eventManager:addListener("PauseGameEv", self, self.stopMove)
 	Manager.eventManager:addListener("ResumeGameEv",self,self.restartMovement)
 	Manager.eventManager:addListener("ChangeSceneEvent", self, self.restartMovement)
-
+	Manager.eventManager:addListener("CameraRotationEnd", self, self.boundPlayer)
 end
 
 function MoveSystem:requires() return { "playerMove" } end
 
 function MoveSystem:Move(entity,dir, delta, speed)
-	entity.Transform:translate(dir * delta * speed:magnitude())
+	local translate = dir * delta * speed:magnitude()
+	local pos = entity.Transform.position + translate
+	local camPos = getCamPosition()
+	if(self.sideview) then
+		local height = getOrthoHeight()
+		local width = getOrthoWidth()
+		local playerSize = {x = 10, y = 5} -- to have some margin
+		if(pos.x + playerSize.x <= camPos.x + width/2 and pos.x - playerSize.x >= camPos.x - width/2
+		 and pos.y + playerSize.y <= camPos.y + height/2 and pos.y - playerSize.y >= camPos.y - height/2) then 
+			entity.Transform:translate(translate)
+		end
+	else
+		local height = getWindowHeight()
+		local width = getWindowWidth()
+		local x = pos.x - camPos.x
+		pos.z = pos.z + 100 --camera centered in z = -100
+		local facz = width/(798 + width*0.71)  --camera projection
+		local facy = facz * height/width --camera projection
+		local playersize = {z = x * facz/10, y = x * facy/10} -- to have some margin
+		if(pos.z + playersize.z <= x*facz and pos.z - playersize.z >= -x*facz 
+		 and pos.y + playersize.y <= x*facy and pos.y - playersize.y >= -x*facy)
+		then 
+			entity.Transform:translate(translate)
+		end
+	end
+end
+
+function MoveSystem:boundPlayer(event)
+	for _, entity in pairs(self.targets) do
+		local pos = entity.Transform.position
+		local camPos = event.camPos
+		if(not self.sideview) then
+			local height = getWindowHeight()
+			local width = getWindowWidth()
+			local x = pos.x - camPos.x
+			local facz = width/(798 + width*0.71)  --camera projection
+			local facy = facz * height/width  --camera projection
+			local playersize = {z = x * facz/10, y = x * facy/10} -- to have some margin
+			if (pos.z + playersize.z > x*facz - 100) then pos.z = x*facz - playersize.z - 100
+				elseif(pos.z - playersize.z < -x*facz - 100) then pos.z = -x*facz + playersize.z -100 end
+			if (pos.y + playersize.y > x*facy) then pos.y = x*facy - playersize.y
+				elseif(pos.y - playersize.y < -x*facy) then pos.y = -x*facy + playersize.y end
+		else
+			local height = getOrthoHeight()
+			local playerSize = {x = 10, y = 5}
+			if (pos.y + playerSize.y > camPos.y + height/2) then pos.y = camPos.y + height/2 - playerSize.y
+				elseif (pos.y + playerSize.y < camPos.y - height/2) then pos.y = camPos.y - height/2 + playerSize.y end
+		end
+		entity.Transform.position = pos
+	end
 end
 
 function MoveSystem:Shoot(entity, delta)
+	local player = entity:get("superShoot")
+
+	if(player.shoots == 0) then
 	local chan = playSound(resources.Sounds.Shoot.id)
 	setChannelVolume(chan,1)
 	ns.spawnEntity(Manager,prefabs.Bullet({
@@ -53,6 +105,17 @@ function MoveSystem:Shoot(entity, delta)
 			rotation={x=0.0,y=90.0,z=0.0},
 			scale={x=2,y= 2,z=2}}}
 	))
+	elseif(player.shoots>0)then
+		local chan = playSound(resources.Sounds.HugeShoot.id)
+		setChannelVolume(chan,1)
+		ns.spawnEntity(Manager,prefabs.SuperShot({
+			Transform = {
+				position={x=entity.Transform.position.x,y=entity.Transform.position.y,z=entity.Transform.position.z},
+				rotation={x=0.0,y=90.0,z=0.0},
+				scale={x=4,y= 4,z=4}}}
+		))
+		player.shoots = player.shoots - 1
+	end
 end
 
 function MoveSystem:Action()

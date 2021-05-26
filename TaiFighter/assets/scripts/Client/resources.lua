@@ -87,6 +87,9 @@ local Resources = {
 	UISchemes = {
 		TaharezLookScheme = {
 			path = "TaharezLook.scheme", type=UIFileType.Scheme
+		},
+		TaifighterLookScheme = {
+			path = "TaifighterLook.scheme", type=UIFileType.Scheme
 		}
 	},
 	UILayouts = {	

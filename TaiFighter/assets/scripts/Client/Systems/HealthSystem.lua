@@ -10,6 +10,7 @@ function HealthSystem:restockLives()
 	for _, entity in pairs(self.targets) do
 		local health = entity:get("health")
 		health.lives = health.maxLives
+		UpdateGameUI(health.lives)
 	end
 end
 
@@ -20,16 +21,17 @@ function HealthSystem:onCollision(player, other, _)
 		health.lives = health.lives -1
 		if(health.lives == 0) then
 			 LOG("Player DEAD")
-			 showDeathUI()
+			 ShowDeathUI()
 			 self.isActive = false
 			 Manager.eventManager:fireEvent(ns.PlayerDeathEv())
-		else 
+		else
 			LOG("Current lives: " .. health.lives)
+			UpdateGameUI(health.lives)
 			health.invulnerabilityTime = 60
 			end
 
 		if(health.maxLives > 3) then health.maxLives = health.maxLives -1 end
-
+		
 		local chan = playSound(resources.Sounds.PlayerExplodes.id)
 		setChannelVolume(chan,1)
 	end

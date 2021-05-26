@@ -125,19 +125,25 @@ function MoveSystem:ControllerHandleInput(entity,dt,speed)
 end
 
 function MoveSystem:update(dt)
-	if not self.canMove then return end
 	for _, entity in pairs(self.targets) do
-		local playerMoveCom = entity:get("playerMove")
-		local vx = playerMoveCom.x
-		local vy = playerMoveCom.y
-		local vz = playerMoveCom.z
-		local speed = vec3:new(vx, vy, vz)
-		self:KeyboardHandleInput(entity,dt,speed)
-		self:ControllerHandleInput(entity,dt,speed)
-	end
+		if self.canMove then
+			local playerMoveCom = entity:get("playerMove")
+			local vx = playerMoveCom.x
+			local vy = playerMoveCom.y
+			local vz = playerMoveCom.z
+			local speed = vec3:new(vx, vy, vz)
+			self:KeyboardHandleInput(entity,dt,speed)
+			self:ControllerHandleInput(entity,dt,speed)	
+		end
 
-	if keyJustPressed(PTSDKeys.P) then
-		ShowPauseUI()
+		if keyJustPressed(PTSDKeys.P) then
+			self.canMove = not self.canMove
+			if self.canMove then
+				HidePauseUI()
+			else
+				ShowPauseUI()
+			end
+		end
 	end
 end
 

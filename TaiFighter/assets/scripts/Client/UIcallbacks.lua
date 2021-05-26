@@ -1,13 +1,13 @@
 --Main menu UI
 
 function CreateMainMenuUIButtons()
-	createButton("PlayButton", "Play", "TaifighterLook/Button", "LemonMilk-41", vec2:new(0.35, 0.43), vec2:new(0.3, 0.12))
+	createButton("PlayButton", "Play", "TaifighterLook/Button", "LemonMilk-41", vec2:new(0.35, 0.5), vec2:new(0.3, 0.15))
 	setButtonFunction("PlayButton","PlayCallback")
 
-	createButton("SettingsButton", "Settings", "TaifighterLook/Button", "LemonMilk-41", vec2:new(0.35, 0.60), vec2:new(0.3, 0.12))
-	setButtonFunction("SettingsButton","SwitchToSettingsMenu")
+	--createButton("SettingsButton", "Settings", "TaifighterLook/Button", "LemonMilk-41", vec2:new(0.35, 0.60), vec2:new(0.3, 0.12))
+	--setButtonFunction("SettingsButton","SwitchToSettingsMenu")
 
-	createButton("ExitButton", "Exit", "TaifighterLook/Button", "LemonMilk-41", vec2:new(0.35, 0.77), vec2:new(0.3, 0.12))
+	createButton("ExitButton", "Exit", "TaifighterLook/Button", "LemonMilk-41", vec2:new(0.35, 0.7), vec2:new(0.3, 0.15))
 	setButtonFunction("ExitButton","ExitCallback")
 end
 
@@ -15,7 +15,7 @@ function ShowMainMenuUI()
 	setWindowVisible("TaiFighterMainMenuWindow",true)
 
 	setWindowVisible("PlayButton", true)
-	setWindowVisible("SettingsButton", true)
+	--setWindowVisible("SettingsButton", true)
 	setWindowVisible("ExitButton", true)
 
 	changeText("Title","TaiFighter")
@@ -26,7 +26,7 @@ end
 function HideMainMenuUI()
 	setWindowVisible("TaiFighterMainMenuWindow",false)
 
-	setWindowVisible("SettingsButton", false)
+	--setWindowVisible("SettingsButton", false)
 	setWindowVisible("ExitButton", false)
 	setWindowVisible("PlayButton", false)
 end
@@ -35,7 +35,7 @@ function PlayCallback()
 	LOG("Get into the game")
 
 	HideMainMenuUI()
-	--showTaiFighterUI()
+	--ShowTaiFighterUI()
 	Manager:changeScene('level1')
 end
 
@@ -55,29 +55,29 @@ end
 
 --Death UI
 
-function createDeathUI()
-	createButton("RetryButton", "Retry", "TaharezLook/Button","DejaVuSans-12",vec2:new(.45, .5), vec2:new(.1, .05))
+function CreateDeathUI()
+	createButton("RetryButton", "Retry", "TaifighterLook/Button", "LemonMilk-41", vec2:new(0.25, 0.60), vec2:new(0.5, 0.12))
 	setButtonFunction("RetryButton","RetryCallback")
 
-	createButton("ReturnMenuButton","Return to menu", "TaharezLook/Button","DejaVuSans-12",vec2:new(.45, .7), vec2:new(.1, .05))
+	createButton("ReturnMenuButton","Return to menu", "TaifighterLook/Button", "LemonMilk-41", vec2:new(0.25, 0.77), vec2:new(0.5, 0.12))
 	setButtonFunction("ReturnMenuButton","ReturnMenuCallback")
 
-	hideDeathUI()
+	HideDeathUI()
 end
 
-function showDeathUI()
-	setWindowVisible("ReturnMenuButton", true)
+function ShowDeathUI()
 	setWindowVisible("RetryButton", true)
+	setWindowVisible("ReturnMenuButton", true)
 end
 
-function hideDeathUI()
+function HideDeathUI()
 	setWindowVisible("ReturnMenuButton", false)
 	setWindowVisible("RetryButton", false)
 end
 
 --Game UI
 
-function showTaiFighterUI()
+function ShowTaiFighterUI()
 	setWindowVisible("TaiFighterWindow", true)
 	setWindowVisible("PauseWindow", false)
 	setWindowVisible("TaiFighterMainMenuWindow",false)
@@ -138,14 +138,14 @@ function ExitCallback()
 end
 
 function ReturnMenuCallback()
-	hideDeathUI()
+	HideDeathUI()
 	HidePauseUI()
 	ShowMainMenuUI()
 	Manager:changeScene('MainMenuScene')
 end
 
 function RetryCallback()
-	hideDeathUI()
+	HideDeathUI()
 	Manager:changeScene(Manager:getCurrentSceneName())
 end
 
@@ -155,7 +155,7 @@ function SwitchToSettingsMenu()
 end
 
 function CreateUIs()
-	createDeathUI()
+	CreateDeathUI()
 	CreateMainMenuUIButtons()
 	CreateSettingsUI()
 	CreatePauseUI()

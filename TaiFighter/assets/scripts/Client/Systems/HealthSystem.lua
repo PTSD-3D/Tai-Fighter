@@ -20,7 +20,7 @@ function HealthSystem:onCollision(player, other, _)
 		health.lives = health.lives -1
 		if(health.lives == 0) then
 			 LOG("Player DEAD")
-			 showDeathUI()
+			 ShowDeathUI()
 			 self.isActive = false
 			 Manager.eventManager:fireEvent(ns.PlayerDeathEv())
 		else 

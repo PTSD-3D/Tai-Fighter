@@ -26,7 +26,7 @@ end
 
 function PerspectiveTimerSystem:update(dt)
 	if in3DMode then
-		timeLeft = timeLeft - dt	--In 3D mode the bar is consumed
+		timeLeft = timeLeft - dt*30	--In 3D mode the bar is consumed
 
 		--If we go below 0.0 the value is clamp to prevent errors
 		if timeLeft < 0.0 then
@@ -34,7 +34,7 @@ function PerspectiveTimerSystem:update(dt)
 		end
 
 	elseif not in3DMode and timeLeft < maxTimeIn3D then
-		timeLeft = timeLeft + dt/2	--Regenerates the bar half speed we use it (May require balance)
+		timeLeft = timeLeft + dt*15	--Regenerates the bar half speed we use it (May require balance)
 
 		--If we go above maxTimeIn3D the value is clamp to prevent giving extra time
 		if timeLeft > maxTimeIn3D then

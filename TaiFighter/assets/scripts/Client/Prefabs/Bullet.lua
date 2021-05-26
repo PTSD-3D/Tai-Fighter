@@ -5,7 +5,7 @@ function pf.Bullet(params)
 	return {
 		Components = {
 			-- Example user defined components
-			{ name = "bullet", arguments = {1,3,100} },
+			{ name = "bullet", arguments = {1,90,100} },
 			{ name = "variableCollider", arguments = {}}
 		},
 		Transform = params.Transform,

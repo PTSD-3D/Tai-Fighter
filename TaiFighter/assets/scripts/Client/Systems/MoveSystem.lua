@@ -149,6 +149,10 @@ function MoveSystem:update(dt)
 		self:KeyboardHandleInput(entity,dt,speed)
 		self:ControllerHandleInput(entity,dt,speed)
 	end
+
+	if keyJustPressed(PTSDKeys.P) then
+		ShowPauseUI()
+	end
 end
 
 Manager:addSystem(MoveSystem())

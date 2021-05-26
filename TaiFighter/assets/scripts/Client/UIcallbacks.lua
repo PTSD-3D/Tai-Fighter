@@ -1,85 +1,154 @@
-function createDeathUI()
-	createButton("RetryButton", "Retry", "TaharezLook/Button","DejaVuSans-12",vec2:new(.45, .5), vec2:new(.1, .05))
-	setButtonFunction("RetryButton","RetryCallback")
+--Main menu UI
 
-	createButton("ReturnMenuButton","Return to menu", "TaharezLook/Button","DejaVuSans-12",vec2:new(.45, .7), vec2:new(.1, .05))
-	setButtonFunction("ReturnMenuButton","ReturnMenuCallback")
+function CreateMainMenuUIButtons()
+	createButton("PlayButton", "Play", "TaifighterLook/Button", "LemonMilk-41", vec2:new(0.35, 0.5), vec2:new(0.3, 0.15))
+	setButtonFunction("PlayButton","PlayCallback")
 
-	hideDeathUI()
+	--createButton("SettingsButton", "Settings", "TaifighterLook/Button", "LemonMilk-41", vec2:new(0.35, 0.60), vec2:new(0.3, 0.12))
+	--setButtonFunction("SettingsButton","SwitchToSettingsMenu")
+
+	createButton("ExitButton", "Exit", "TaifighterLook/Button", "LemonMilk-41", vec2:new(0.35, 0.7), vec2:new(0.3, 0.15))
+	setButtonFunction("ExitButton","ExitCallback")
 end
 
-function showDeathUI()
-	setWindowVisible("ReturnMenuButton", true)
-	setWindowVisible("RetryButton", true)
-end
-
-function hideDeathUI()
-	setWindowVisible("ReturnMenuButton", false)
-	setWindowVisible("RetryButton", false)
-end
-
-function showTaiFighterUI()
-	setWindowVisible("TaiFighterWindow", true)
-	setWindowVisible("PauseWindow", false)
-	setWindowVisible("TaiFighterMainMenuWindow",false)
-
-	
-	setWindowVisible("PushButton", false)
-	setWindowVisible("ExitButton", false)
-	setWindowVisible("PlayButton", false)
-
-	changeText("Title","Payum")
-	setProgressBarValue("DimensionBar", 0.2);
-
-	setUIMouseCursorVisible(false);
-end
-
-function showMainMenuUI()
-	setWindowVisible("TaiFighterWindow", false)
-	setWindowVisible("PauseWindow", false)
+function ShowMainMenuUI()
 	setWindowVisible("TaiFighterMainMenuWindow",true)
 
-	setWindowVisible("PushButton", false)
-	setWindowVisible("ExitButton", false)
 	setWindowVisible("PlayButton", true)
-
-	changeText("Title","TaiFighter")
-
-	setUIMouseCursorVisible(true);
-end
-
-function showPauseUI()
-	setWindowVisible("TaiFighterWindow", false)
-	setWindowVisible("TaiFighterMainMenuWindow",false)
-	setWindowVisible("PauseWindow", true)
-
-	setWindowVisible("PushButton", true)
+	--setWindowVisible("SettingsButton", true)
 	setWindowVisible("ExitButton", true)
-	setWindowVisible("PlayButton", false)
 
 	changeText("Title","TaiFighter")
 
 	setUIMouseCursorVisible(true);
 end
 
-function exitCallback()
-	LOG("EXIT place holder")
+function HideMainMenuUI()
+	setWindowVisible("TaiFighterMainMenuWindow",false)
+
+	--setWindowVisible("SettingsButton", false)
+	setWindowVisible("ExitButton", false)
+	setWindowVisible("PlayButton", false)
 end
 
 function PlayCallback()
 	LOG("Get into the game")
 
-	showTaiFighterUI()
+	HideMainMenuUI()
 	Manager:changeScene('level1')
+	ShowTaiFighterUI()
+end
+
+--Death UI
+
+function CreateDeathUI()
+	createButton("RetryButton", "Retry", "TaifighterLook/Button", "LemonMilk-41", vec2:new(0.25, 0.60), vec2:new(0.5, 0.12))
+	setButtonFunction("RetryButton","RetryCallback")
+
+	createButton("ReturnMenuButton","Return to menu", "TaifighterLook/Button", "LemonMilk-41", vec2:new(0.25, 0.77), vec2:new(0.5, 0.12))
+	setButtonFunction("ReturnMenuButton","ReturnMenuCallback")
+
+	HideDeathUI()
+end
+
+function ShowDeathUI()
+	setWindowVisible("RetryButton", true)
+	setWindowVisible("ReturnMenuButton", true)
+end
+
+function HideDeathUI()
+	setWindowVisible("ReturnMenuButton", false)
+	setWindowVisible("RetryButton", false)
+end
+
+--Game UI
+
+function ShowTaiFighterUI()
+	setWindowVisible("TaiFighterWindow", true)
+	
+	setWindowVisible("ExtraLife",false)
+
+	setProgressBarValue("DimensionBar", 0.2);
+
+	setUIMouseCursorVisible(false);
+end
+
+function UpdateGameUI(lives)
+	setWindowVisible("Life0",lives>0 and true or false) --Ternary operator
+	setWindowVisible("Life1",lives>1 and true or false)
+	setWindowVisible("Life2",lives>2 and true or false)
+	setWindowVisible("ExtraLife",lives>3 and true or false)
+end
+
+function HideTaiFighterUI()
+	setWindowVisible("TaiFighterWindow",false)
+end
+
+--Pause UI
+
+function CreatePauseUI()
+	createButton("ContinueButtonPause", "Continue", "TaifighterLook/Button", "LemonMilk-41", vec2:new(0.35, 0.4), vec2:new(0.3, 0.12))
+	setButtonFunction("ContinueButtonPause","ContinueFromPause")
+
+	createButton("MainMenuButtonPause", "Main menu", "TaifighterLook/Button", "LemonMilk-41", vec2:new(0.35, 0.57), vec2:new(0.3, 0.12))
+	setButtonFunction("MainMenuButtonPause","ReturnMenuCallback")
+
+	createButton("ExitButtonPause", "Exit", "TaifighterLook/Button", "LemonMilk-41", vec2:new(0.35, 0.74), vec2:new(0.3, 0.12))
+	setButtonFunction("ExitButtonPause","ExitCallback")
+
+	HidePauseUI()
+end
+
+function ShowPauseUI()
+	setWindowVisible("PauseWindow", true)
+
+	setWindowVisible("ContinueButtonPause", true)
+	setWindowVisible("MainMenuButtonPause", true)
+	setWindowVisible("ExitButtonPause", true)
+
+	setUIMouseCursorVisible(true);
+end
+
+function HidePauseUI()
+	setWindowVisible("PauseWindow", false)
+
+	setWindowVisible("ContinueButtonPause", false)
+	setWindowVisible("MainMenuButtonPause", false)
+	setWindowVisible("ExitButtonPause", false)
+end
+
+function ContinueFromPause()
+	HidePauseUI()
+	--ShowGameUI()
+end
+
+--General callbacks
+
+function ExitCallback()
+	ExitGame()
 end
 
 function ReturnMenuCallback()
-	hideDeathUI()
-	showMainMenuUI()
+	HideDeathUI()
+	HidePauseUI()
+	HideTaiFighterUI()
+	ShowMainMenuUI()
 	Manager:changeScene('MainMenuScene')
 end
 
 function RetryCallback()
-	hideDeathUI()
+	HideDeathUI()
 	Manager:changeScene(Manager:getCurrentSceneName())
+end
+
+function SwitchToSettingsMenu()
+	HideMainMenuUI()
+	ShowSettingsUI()
+end
+
+function CreateUIs()
+	CreateDeathUI()
+	CreateMainMenuUIButtons()
+	--CreateSettingsUI()
+	CreatePauseUI()
 end

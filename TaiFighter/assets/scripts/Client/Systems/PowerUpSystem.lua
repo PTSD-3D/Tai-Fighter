@@ -20,12 +20,14 @@ function PowerUpSystem:onCollision(powerup, other, _)
 			local health = other:get("health")
 			if(health.lives < health.maxLives) then
 				health.lives = health.lives + 1
+				UpdateGameUI(health.lives)
 				LOG("Current lives: " .. health.lives)
 			end
 		elseif(type ==2) then
 			local health = other:get("health")
 			health.maxLives = health.maxLives + 1
 			health.lives = health.maxLives
+			UpdateGameUI(health.lives)
 			LOG("Current lives: " .. health.lives)
 		elseif(type==3) then
 			local health = other:get("health")

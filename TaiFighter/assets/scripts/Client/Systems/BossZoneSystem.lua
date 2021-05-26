@@ -33,7 +33,7 @@ function BossZoneSystem:spawnBoss()
 		pos1 = -120,
 		pos2 = -60,
 		dir = 1,
-		speed = 8,
+		speed = 240,
 		Transform = {
 			position={x=-15,y=-60,z=-120},
 			rotation={x=-90,y=-90,z=0},
@@ -43,7 +43,7 @@ function BossZoneSystem:spawnBoss()
 		pos1 = -120,
 		pos2 = -60,
 		dir = -1,
-		speed = 8,
+		speed = 240,
 		Transform = {
 			position={x=-15,y=-30,z=-60},
 			rotation={x=-90,y=-90,z=0},
@@ -53,7 +53,7 @@ function BossZoneSystem:spawnBoss()
 		pos1 = -120,
 		pos2 = -60,
 		dir = 1,
-		speed = 8,
+		speed = 240,
 		Transform = {
 			position={x=-15,y=0,z=-120},
 			rotation={x=-90,y=-90,z=0},
@@ -63,7 +63,7 @@ function BossZoneSystem:spawnBoss()
 		pos1 = -120,
 		pos2 = -60,
 		dir = -1,
-		speed = 4,
+		speed = 120,
 		Transform = {
 			position={x=-15,y=30,z=-120},
 			rotation={x=-90,y=-90,z=0},
@@ -74,7 +74,7 @@ function BossZoneSystem:spawnBoss()
 		pos1 = -120,
 		pos2 = -60,
 		dir = -1,
-		speed = 4,
+		speed = 120,
 		Transform = {
 			position={x=-15,y=60,z=-120},
 			rotation={x=-90,y=-90,z=0},

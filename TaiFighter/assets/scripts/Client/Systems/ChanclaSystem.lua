@@ -35,7 +35,7 @@ function ChanclaSystem:update(dt)
 			rotation = randRotation,
 			Transform = {
 				position={x=tr.position.x,y=tr.position.y,z=tr.position.z},
-				rotation={x=-90 ,y=270.0,z=180.0},
+				rotation={x=-90 ,y=270.0,z=0.0},
 				scale={x=5,y=5,z=5}}}
 			))
 			end

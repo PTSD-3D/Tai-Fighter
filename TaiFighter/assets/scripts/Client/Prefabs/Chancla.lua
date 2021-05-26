@@ -23,7 +23,7 @@ function pf.ChanclaFake(params)
 		Components = {
 			-- Example user defined components
 			{ name = "damagePlayer", arguments = {0.5}},
-			{ name = "scrollMovement", arguments = {2}}
+			{ name = "scrollMovement", arguments = {60}}
 		},
 		Transform = params.Transform,
 		Mesh = { mesh = "Chancla.mesh", material = "Chancla" },

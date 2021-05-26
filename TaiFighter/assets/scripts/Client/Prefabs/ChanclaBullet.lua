@@ -5,7 +5,7 @@ function pf.ChanclaBullet(params)
 	return {
 		Components = {
 			-- Example user defined components
-			{ name = "chanclaBullet", arguments = {3,100, params.rotation} },
+			{ name = "chanclaBullet", arguments = {90,100, params.rotation} },
 			{ name = "damagePlayer", arguments = {}}
 		},
 		Transform = params.Transform,

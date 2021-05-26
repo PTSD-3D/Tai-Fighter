@@ -52,7 +52,7 @@ function ChanclaSystem:onCollision(chancla,other,_)
 		local chan = playSound(resources.Sounds.EnemyDeath.id)
 		setChannelVolume(chan,1)
 		local chance = math.random(0, 100)
-		if(chance >= 70) then
+		if(chance >= 90) then
 			chance = math.random(0,3)
 			if(chance > 1) then
 				ns.spawnEntity(Manager,prefabs.HealPowerUp({

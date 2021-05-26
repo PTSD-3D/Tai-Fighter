@@ -18,7 +18,7 @@ function pf.SuperShot(params)
 	return {
 		Components = {
 			-- Example user defined components
-			{ name = "bullet", arguments = {5,10,100} },
+			{ name = "bullet", arguments = {5,180,100} },
 			{ name = "variableCollider", arguments = {}}
 		},
 		Transform = params.Transform,

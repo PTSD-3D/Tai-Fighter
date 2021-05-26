@@ -1,3 +1,5 @@
+local resources = require('resources')
+
 function createDeathUI()
 	createButton("RetryButton", "Retry", "TaharezLook/Button","DejaVuSans-12",vec2:new(.45, .5), vec2:new(.1, .05))
 	setButtonFunction("RetryButton","RetryCallback")
@@ -71,6 +73,8 @@ function PlayCallback()
 
 	showTaiFighterUI()
 	Manager:changeScene('bosslevel')
+	print(resources.Sounds.BossFight.id)
+	playMusic(resources.Sounds.BossFight.id,false)
 end
 
 function ReturnMenuCallback()

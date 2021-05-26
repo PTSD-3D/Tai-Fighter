@@ -3,7 +3,6 @@
 LOG("Loading systems...", LogLevel.Info, 1)
 
 require('MoveSystem')
-require('SoundSystem')
 require('BulletSystem')
 require('CameraRotationSystem')
 require('EnemyCollisionSystem')

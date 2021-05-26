@@ -20,10 +20,11 @@ function HealthSystem:onCollision(player, other, _)
 		local health = player:get("health")
 		health.lives = health.lives -1
 		if(health.lives == 0) then
-			 LOG("Player DEAD")
-			 ShowDeathUI()
-			 self.isActive = false
-			 Manager.eventManager:fireEvent(ns.PlayerDeathEv())
+			LOG("Player DEAD")
+			ShowDeathUI()
+			self.isActive = false
+			Manager.eventManager:fireEvent(ns.PauseGameEv())
+			Manager.eventManager:fireEvent(ns.PlayerDeathEv())
 		else
 			LOG("Current lives: " .. health.lives)
 			UpdateGameUI(health.lives)

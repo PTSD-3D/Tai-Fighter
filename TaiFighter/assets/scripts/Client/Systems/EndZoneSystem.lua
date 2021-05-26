@@ -11,7 +11,9 @@ end
 
 function EndSystem:onCollision(_,other,_)
     if(other:has("playerMove")) then
-		LOG("This is where the fun ends")
+		Manager:changeScene('MainMenuScene')
+		HideTaiFighterUI()
+		ShowMainMenuUI()
 	end
 end
 

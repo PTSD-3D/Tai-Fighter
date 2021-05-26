@@ -32,7 +32,8 @@ function MoveSystem:initialize()
 	self.canMove = true
 	--Setting a listener for when the 3Dbar is depleated (Fires the change of perspective)
 	Manager.eventManager:addListener("PerspectiveChangeEnd", self, self.Change)
-	Manager.eventManager:addListener("PlayerDeathEv", self, self.stopMove)
+	Manager.eventManager:addListener("PauseGameEv", self, self.stopMove)
+	Manager.eventManager:addListener("ResumeGameEv",self,self.restartMovement)
 	Manager.eventManager:addListener("ChangeSceneEvent", self, self.restartMovement)
 
 end
@@ -44,7 +45,6 @@ function MoveSystem:Move(entity,dir, delta, speed)
 end
 
 function MoveSystem:Shoot(entity, delta)
-	LOG("PEW")
 	local chan = playSound(resources.Sounds.Shoot.id)
 	setChannelVolume(chan,1)
 	ns.spawnEntity(Manager,prefabs.Bullet({
@@ -140,8 +140,10 @@ function MoveSystem:update(dt)
 			self.canMove = not self.canMove
 			if self.canMove then
 				HidePauseUI()
+				Manager.eventManager:fireEvent(ns.ResumeGameEv())
 			else
 				ShowPauseUI()
+				Manager.eventManager:fireEvent(ns.PauseGameEv())
 			end
 		end
 	end

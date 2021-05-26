@@ -51,6 +51,19 @@ function ChanclaSystem:onCollision(chancla,other,_)
 		chanclaInfo.shootTime = chanclaInfo.shootTime - 0.5
 		local chan = playSound(resources.Sounds.EnemyDeath.id)
 		setChannelVolume(chan,1)
+		local chance = math.random(0, 100)
+		if(chance >= 70) then
+			chance = math.random(0,3)
+			if(chance > 1) then
+				ns.spawnEntity(Manager,prefabs.HealPowerUp({
+			Transform = {position={x=chancla.Transform.position.x,y=math.random(-50,50),z=-100},rotation={x=-90,y=-90,z=0},scale={x=1,y=1,z=1}}}
+			))
+			else
+				ns.spawnEntity(Manager,prefabs.TimerPowerUp({
+			Transform = {position={x=chancla.Transform.position.x,y=math.random(-50,50),z=-100},rotation={x=-90,y=-90,z=0},scale={x=5,y=5,z=5}}}
+			))
+			end
+		end
         if (chanclaInfo.currentHP <= 0) then
             Manager:removeEntity(chancla)
             Manager:changeScene("MainMenuScene")

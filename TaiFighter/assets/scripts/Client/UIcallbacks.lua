@@ -35,7 +35,7 @@ function PlayCallback()
 	LOG("Get into the game")
 
 	HideMainMenuUI()
-	Manager:changeScene('level1Casi')
+	Manager:changeScene('level1Done')
 	ShowTaiFighterUI()
 end
 

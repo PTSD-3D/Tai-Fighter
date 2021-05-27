@@ -6,7 +6,6 @@ local ns = require("namespace")
 LOG("Loading components...", LogLevel.Info, 1)
 
 ns.Component.create("playerMove",{"x","y","z"})
-ns.Component.create("boombox",{"volume","isPlaying","sound","channel"})
 ns.Component.create("topo")
 ns.Component.create("scrollMovement", {"speed"})
 ns.Component.create("damagePlayer")
@@ -17,6 +16,10 @@ ns.Component.create("health",{"lives","maxLives","invulnerabilityTime"},{lives=3
 ns.Component.create("variableCollider")
 ns.Component.create("powerUp", {"rotationSpeed", "type"})
 ns.Component.create("endzone")
+ns.Component.create("bosszone")
+ns.Component.create("chancla", {"shootTime", "shootTimer", "currentHP", "attackMinTime", "attackMaxTime", "attackTimer", "attackTime", "state", "speed"}, {shootTime = 20, shootTimer = 0, currentHP=30, attackMinTime = 100, attackMaxTime = 1000, attackTimer = 0, state = 1, speed = 2}) --state 0 = shooting 1 = attacking 2 = returning
+ns.Component.create("chanclaBullet", {"speed","lifetime", "rotation"},{speed=600,lifetime=200,rotation=0})
+ns.Component.create("chanclaGuardPatrol", {"pos1", "pos2", "dir", "speed"})
 ns.Component.create("superShoot",{"shoots"},{shoots = 0})
 
 LOG("Components load completed", LogLevel.Info, 1)

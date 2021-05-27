@@ -25,3 +25,20 @@ function pf.InvincibleEnemy(params)
 									rotation=params.Transform.rotation}
 	}
 end
+
+function pf.ChanclaMovableGuard(params)
+	return {
+		Components = {
+			-- Example user defined components
+			{ name = "damagePlayer", arguments = {0.5}},
+			{ name = "chanclaGuardPatrol", arguments = {params.pos1, params.pos2, params.dir, params.speed}}
+			-- { name = "playerMove", arguments = { { x = 1, y = 0, z = 0 } } }
+		},
+		Transform = params.Transform,
+		Mesh = { mesh = "InvincibleEnemy.mesh", material = "InvincibleEnemy" },
+		Rigidbody = {	size=scale(params.Transform.scale, params.Scale or 1.1),
+									mass=1,position=params.Transform.position,
+									type=2,trigger=false,
+									rotation=params.Transform.rotation}
+	}
+end

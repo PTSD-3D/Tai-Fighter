@@ -38,7 +38,7 @@ function PlayCallback()
 	LOG("Get into the game")
 
 	HideMainMenuUI()
-	Manager:changeScene('bosslevel')
+	Manager:changeScene('level1')
 	changeMusic(resources.Sounds.LevelTheme.id,true)
 	ShowTaiFighterUI()
 end

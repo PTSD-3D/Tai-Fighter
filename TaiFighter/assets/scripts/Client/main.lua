@@ -13,6 +13,10 @@ end
 --local ents = Manager:getEntitiesWithComponent("playerMove")
 --if ents ~= {} then ents[1]:add(ns.Component.all["topo"]()) end
 
+--Lights setup
+setAmbientLight(0.35,0.35,0.35)
+setLightOrientation(0.2, .4, -.02, -.9)
+
 --UI setup
 setUIMouseCursor("TaifighterLook/MouseLook")
 setUIMouseCursorVisible(false)

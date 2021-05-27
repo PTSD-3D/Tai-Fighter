@@ -6,7 +6,7 @@ function pf.BossZone(params)
 		Components = {
 			-- Example user defined components
 			{ name = "bosszone",arguments={}},
-            { name = "scrollMovement", arguments = {0.5}}
+            { name = "scrollMovement", arguments = {15}}
 		},
 		Transform = params.Transform,
         Mesh = {mesh="Cube.mesh", material="Green"},

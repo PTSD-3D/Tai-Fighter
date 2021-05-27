@@ -1,3 +1,5 @@
+local resources = require('resources')
+
 --Main menu UI
 
 function CreateMainMenuUIButtons()
@@ -12,6 +14,7 @@ function CreateMainMenuUIButtons()
 end
 
 function ShowMainMenuUI()
+	changeMusic(resources.Sounds.MainMenuTheme.id,true)
 	setWindowVisible("TaiFighterMainMenuWindow",true)
 
 	setWindowVisible("PlayButton", true)
@@ -35,7 +38,8 @@ function PlayCallback()
 	LOG("Get into the game")
 
 	HideMainMenuUI()
-	Manager:changeScene('level1')
+	Manager:changeScene('bosslevel')
+	changeMusic(resources.Sounds.LevelTheme.id,true)
 	ShowTaiFighterUI()
 end
 

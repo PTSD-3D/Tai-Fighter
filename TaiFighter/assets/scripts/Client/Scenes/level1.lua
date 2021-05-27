@@ -1,7 +1,7 @@
 local prefabs = require('Prefab') 
 local sceneConfig = require('Prefab') 
 local Scene={
- Entities={	EndZone_000=prefabs.EndZone({
+ Entities={	BossZone_000=prefabs.BossZone({
 		Transform = {position={x=1488.963134765625,y=0.0,z=-102.66244506835938},rotation={x=-0.0,y=450.0001286356067,z=0.0},scale={x=150.0,y=100.0,z=1.1554402112960815}}}),
 	Enemy_001=prefabs.Enemy({
 		Transform = {position={x=168.55471801757812,y=11.125066757202148,z=-152.66233825683594},rotation={x=-90.00000250447816,y=630.0000926634281,z=-0.0},scale={x=3.0,y=3.0,z=3.0}}}),

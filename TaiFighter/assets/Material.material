@@ -39,7 +39,9 @@ material Red{
 material Green{
 	technique {
 		pass {
-			diffuse 0 1 0
+			diffuse 0 1 0 0
+
+            scene_blend alpha_blend
 			}
 	}
 }

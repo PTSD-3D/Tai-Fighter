@@ -9,7 +9,7 @@ function pf.BossZone(params)
             { name = "scrollMovement", arguments = {0.5}}
 		},
 		Transform = params.Transform,
-        Mesh = {mesh="Cube.mesh", material="MaterialChancla"},
+        Mesh = {mesh="Cube.mesh", material="Green"},
 		Rigidbody = {size=params.Transform.scale,mass=1,position=params.Transform.position,type=2,trigger=true,rotation=params.Transform.rotation}
 	}
 end
